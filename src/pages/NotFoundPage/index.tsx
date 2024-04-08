@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router-dom';
+import { CustomButton, CustomCheckBox, CustomSwitch } from '../../ui-kit';
+import { FormControlLabel } from '@mui/material';
 
 export default function NotFoundPage() {
   const navigate = useNavigate();
@@ -13,7 +15,18 @@ export default function NotFoundPage() {
         gap: '20px',
       }}
     >
-      <button onClick={() => navigate('/')}>Назад</button>
+      <CustomButton
+        onClick={() => navigate('/')}
+        size="large"
+        variant="contained"
+      >
+        Назад
+      </CustomButton>
+      <FormControlLabel
+        control={<CustomCheckBox defaultChecked />}
+        label="Чекбокс"
+      />
+      <FormControlLabel control={<CustomSwitch />} label="Свитч " />
     </div>
   );
 }

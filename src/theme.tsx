@@ -5,10 +5,16 @@ import './assets/fonts/fonts.module.css';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#FEF339', // Цвет акцентных кнопок
-      dark: '#222222', // Цвет черных кнопок
-      light: '#F4F6F9', // Цвет контролов, инпутов
+      main: '#222222', // Цвет основных кнопок
+      dark: 'hsla(0, 0%, 10%, 1)', // Цвет hover
+      light: 'hsla(0, 0%, 13%, 0.9)', // Цвет контролов, инпутов
       contrastText: '#FFFFFF',
+    },
+    secondary: {
+      main: '#FEF339', // Цвет акцентных кнопок
+      dark: '#F8E735', // Цвет hover
+      light: '#F4F6F9', // Цвет контролов, инпутов
+      // contrastText: '#FFFFFF',
     },
     error: {
       main: '#FF4544', // Цвет ошибки
