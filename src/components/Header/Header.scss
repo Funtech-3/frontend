@@ -1,0 +1,14 @@
+.Header {
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
+  .logo {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 200px;
+      height: 50px;
+      margin-right: 10px;
+    }
+  }
+}
