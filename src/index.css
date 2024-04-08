@@ -3,6 +3,9 @@
 :root {
   color-scheme: light dark;
   font-family: 'YS Text', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
