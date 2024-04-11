@@ -1,8 +1,8 @@
 import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
-import heart from '../../images/heart.svg';
-import back from '../../images/back.svg';
+import heart from '../../assets/images/heart.svg';
+import back from '../../assets/images/back.svg';
 import './index.scss';
 
 export default function EventPage() {
@@ -10,7 +10,7 @@ export default function EventPage() {
     <Typography variant="h1">
       <main className="EventPage">
         <section className="about__section">
-          <Link to="/main" className="about__link">
+          <Link to="/" className="about__link">
             <img src={back} alt="Назад" /> Назад
           </Link>
           <Button className="button__black1">Программирование</Button>
