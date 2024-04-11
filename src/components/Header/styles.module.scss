@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   height: 80px;
+  justify-content: space-between;
 
   .logo {
     display: flex;
@@ -26,25 +27,20 @@
     }
   }
 
-  .textFields {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .myProfile {
+  .profile {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 40px;
+  }
+}
 
-    .textProfile {
-      color: rgb(34, 34, 34);
-      font-family: 'YS Text', Arial, sans-serif;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 20px;
-      letter-spacing: 0%;
-      justify-content: stretch;
-    }
+.link {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  gap: 11px;
+  align-items: center;
+  &:hover {
+    opacity: 0.8;
   }
 }
