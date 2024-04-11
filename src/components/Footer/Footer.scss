@@ -2,14 +2,28 @@
   background-color: #ffffff;
   color: #000000;
   padding: 40px;
+  bottom: 0;
+  left: 0;
+  position: static;
 
   .footer-content {
     display: flex;
     justify-content: space-between;
+    flex-direction: row;
     align-items: center;
   }
 
   .copyright {
     font-size: 14px;
+  }
+
+  .footer-paragraph {
+    width: 224px;
+    height: 36px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0 10px;
+    margin-left: auto;
   }
 }
