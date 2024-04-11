@@ -1,9 +1,10 @@
-import { Typography } from '@mui/material';
+import Filters from '../../components/Filters';
+import styles from './styles.module.scss';
 
 export default function MainPage() {
   return (
-    <Typography variant="h1" color="primary">
-      MainPage
-    </Typography>
+    <main className={styles.main}>
+      <Filters />
+    </main>
   );
 }

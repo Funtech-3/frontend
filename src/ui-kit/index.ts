@@ -2,7 +2,7 @@ import CustomButton from './CustomButton';
 import CustomCheckBox from './CustomCheckBox';
 import CustomSwitch from './CustomSwitch';
 import StatusLabel from './StatusLabel';
-import Dropdown from './Dropdown';
+import CustomSelect from './CustomSelect';
 import Loader from './Loader';
 import CustomAlert from './CustomAlert';
 
@@ -11,7 +11,7 @@ export {
   CustomCheckBox,
   CustomSwitch,
   StatusLabel,
-  Dropdown,
+  CustomSelect,
   Loader,
   CustomAlert,
 };
