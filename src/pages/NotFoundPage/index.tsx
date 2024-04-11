@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import {
+  CustomAlert,
   CustomButton,
   CustomCheckBox,
   CustomSwitch,
+  Loader,
   StatusLabel,
 } from '../../ui-kit';
 import { FormControlLabel, useTheme } from '@mui/material';
@@ -49,6 +51,8 @@ export default function NotFoundPage() {
         backgroundColor={theme.palette.text.secondary}
         tooltip="Something went wrong!"
       />
+      <CustomAlert severity="success">Something went wrong!</CustomAlert>
+      <Loader />
     </div>
   );
 }

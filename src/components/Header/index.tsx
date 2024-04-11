@@ -1,7 +1,7 @@
 import logo from '../../assets/images/logo.svg';
-import avatar from '../../assets/images/avatar.svg';
+import avatar from '../../assets/images/avatar.webp';
 
-import TextFields from '../../ui-kit/TextFields/TextFields';
+import TextFields from '../../ui-kit/CustomTextField/CustomTextField';
 
 import styles from './styles.module.scss';
 import { Link } from 'react-router-dom';

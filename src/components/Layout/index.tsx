@@ -1,10 +1,10 @@
 import { Outlet } from 'react-router-dom';
 import ScrollToTop from '../../utils/ScrollToTop';
 import { Suspense } from 'react';
-import { CircularProgress } from '@mui/material';
 import styles from './styles.module.scss';
 import Header from '../Header';
 import Footer from '../Footer';
+import { Loader } from '../../ui-kit';
 
 export default function Layout() {
   return (
@@ -20,7 +20,7 @@ export default function Layout() {
                   justifyContent: 'center',
                 }}
               >
-                <CircularProgress color="primary" />
+                <Loader />
               </div>
             }
           >
