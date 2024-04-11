@@ -18,7 +18,10 @@
 
     z-index: 0;
 
-    .event__link {
+    .about__link {
+      position: absolute;
+      top: 30%;
+      left: 5%;
       color: rgb(255, 255, 255);
       font-family: 'YS Text', Arial, sans-serif;
       font-size: 14px;
@@ -27,11 +30,60 @@
       letter-spacing: 0%;
       text-align: left;
       text-decoration-line: underline;
-      z-index: 1;
+      z-index: 2;
+    }
+
+    img {
+      padding-right: 5px;
+    }
+
+    .button__black1 {
+      position: absolute;
+      top: 45%;
+      left: 5%;
+      width: 229px;
+      height: 36px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 7px 10px 7px 10px;
+      border-radius: 100px;
+      background: rgba(34, 34, 34, 0.55);
+      color: rgb(255, 255, 255);
+      font-family: 'YS Text', Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 16px;
+      letter-spacing: 0%;
+      text-align: left;
+    }
+
+    .button__black2 {
+      position: absolute;
+      top: 45%;
+      left: 18%;
+      width: 68px;
+      height: 35px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 7px 10px 7px 10px;
+      border-radius: 100px;
+      background: rgba(34, 34, 34, 0.55);
+      color: rgb(255, 255, 255);
+      font-family: 'YS Text', Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 16px;
+      letter-spacing: 0%;
+      text-align: left;
     }
 
     h1 {
-      position: relative;
+      position: absolute;
+      top: 30%;
       display: flex;
       justify-content: flex-start;
       align-items: center;
@@ -48,7 +100,7 @@
 
     .about__paragraph {
       position: absolute;
-      top: 60%;
+      top: 63%;
       left: 5%;
       display: flex;
       flex-direction: row;
@@ -80,7 +132,7 @@
 
     .about__button {
       position: absolute;
-      top: 80%;
+      top: 77%;
       left: 5%;
       width: 282px;
       height: 62px;
@@ -102,7 +154,7 @@
 
     .about__like-button {
       position: absolute;
-      top: 80%;
+      top: 77%;
       left: 20.5%;
       width: 62px;
       height: 62px;
@@ -112,6 +164,23 @@
       align-items: center;
       border-radius: 40px;
       background: rgb(254, 243, 57);
+    }
+
+    .registry_open {
+      position: absolute;
+      bottom: 300%;
+      left: 1197px;
+      width: 187px;
+      height: 30px;
+      padding: 5px 10px 5px 10px;
+      border-radius: 100px;
+      background: rgba(34, 34, 34, 0.55);
+      color: rgb(255, 255, 255);
+      font-family: 'YS Text', Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: 0%;
     }
   }
 }
