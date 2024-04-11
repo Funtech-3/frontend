@@ -1,0 +1,27 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 0;
+  border-top: 1px solid hsla(0, 0%, 13%, 0.1);
+}
+
+.links {
+  display: flex;
+  gap: 24px;
+  flex-direction: row;
+}
+
+.text {
+  font-size: 11px;
+  max-width: 224px;
+}
+
+.link {
+  text-decoration: none;
+  color: hsla(0, 0%, 13%, 0.55);
+
+  &_active {
+    color: #222222;
+  }
+}
