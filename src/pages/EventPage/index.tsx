@@ -1,7 +1,7 @@
-import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import {
+  Typography,
   Table,
   TableBody,
   TableCell,
