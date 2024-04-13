@@ -1,42 +1,41 @@
 import { Typography } from '@mui/material';
 import PlaceIcon from '@mui/icons-material/Place';
-import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
+// import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 import styles from './styles.module.scss';
 import { StatusLabel, CustomChip } from '../../ui-kit';
-import {
-  CITIES,
-  PROGRAMMES,
-  REGISTRATION_STATUSES,
-} from '../../utils/constants';
+import { REGISTRATION_STATUSES } from '../../utils/constants';
 import theme from '../../theme';
+import { useState } from 'react';
+import { Favorite } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 
 export default function Card({ event }: { event: EventType }) {
-  function defineCity(city: number) {
-    return CITIES.find(c => c.id === city)?.name;
-  }
+  const [favorited, setFavorited] = useState(false);
 
-  function defineLocation(mode: string, city?: number) {
-    switch (mode) {
-      case 'ONLINE':
-        return (
-          <div className={styles.location}>
-            <VideoCameraFrontIcon htmlColor={theme.palette.text.secondary} />
-            <Typography>Онлайн</Typography>
-          </div>
-        );
-      case 'OFFLINE':
-        return (
-          <div className={styles.location}>
-            <PlaceIcon htmlColor={theme.palette.text.secondary} />
-            <Typography>{city && defineCity(city)}</Typography>
-          </div>
-        );
-      default:
-        return null;
-    }
-  }
+  const navigate = useNavigate();
+
+  // function defineLocation(mode: string, city?: string) {
+  //   switch (mode) {
+  //     case 'ONLINE':
+  //       return (
+  //         <div className={styles.location}>
+  //           <VideoCameraFrontIcon htmlColor={theme.palette.text.secondary} />
+  //           <Typography>Онлайн</Typography>
+  //         </div>
+  //       );
+  //     case 'OFFLINE':
+  //       return (
+  //         <div className={styles.location}>
+  //           <PlaceIcon htmlColor={theme.palette.text.secondary} />
+  //           <Typography>{city}</Typography>
+  //         </div>
+  //       );
+  //     default:
+  //       return null;
+  //   }
+  // }
 
   function defineStatus(status: string) {
     return (
@@ -47,34 +46,35 @@ export default function Card({ event }: { event: EventType }) {
     );
   }
 
-  function defineProgramChips(id: number) {
-    return PROGRAMMES.find(p => p.id === id)?.title;
-  }
-
-  function handleLike() {}
-
-  function defineLike(favorited: number) {
-    if (favorited) {
-      return <FavoriteBorderIcon color="secondary" fontSize="large" />;
-    }
-    return <FavoriteBorderIcon color="disabled" fontSize="large" />;
+  function handleLike(event: React.MouseEvent) {
+    event.stopPropagation();
+    setFavorited(prev => !prev);
   }
 
   return (
-    <div className={styles.card}>
+    <div
+      className={styles.card}
+      onClick={() => navigate(`/event/${event.event_id}`)}
+    >
       <div className={styles.imageContainer}>
         <div
           className={styles.image}
-          style={{ backgroundImage: `url(${event.image})` }}
+          style={{ backgroundImage: `url(${event.preview_image})` }}
         ></div>
 
         <div className={styles.imageBody}>
           <div className={styles.imageTopContainer}>
             <div className={styles.imageTags}>
-              <CustomChip label={defineProgramChips(event.tags_id)} />
+              {event.tags.map(tag => (
+                <CustomChip key={tag.id} label={tag.title} />
+              ))}
             </div>
             <button className={styles.likeButton} onClick={handleLike}>
-              {defineLike(event.favorited_by)}
+              {favorited ? (
+                <Favorite fontSize="large" htmlColor="#fff" />
+              ) : (
+                <FavoriteBorderIcon fontSize="large" htmlColor="#fff" />
+              )}
             </button>
           </div>
           <Typography
@@ -85,7 +85,7 @@ export default function Card({ event }: { event: EventType }) {
             fontWeight={500}
             fontSize={24}
           >
-            {event.title}
+            {event.name}
           </Typography>
         </div>
       </div>
@@ -97,7 +97,7 @@ export default function Card({ event }: { event: EventType }) {
             color="text.primary"
             fontSize={18}
           >
-            {event.date}
+            {event.date_event}
           </Typography>
           {defineStatus(event.registration_status)}
         </div>
@@ -107,9 +107,14 @@ export default function Card({ event }: { event: EventType }) {
           fontSize={16}
           lineHeight={1.4}
         >
-          {event.description}
+          {/* {event.description} */}
+          Описание еще не добавлено
         </Typography>
-        {defineLocation(event.mode, event.city_id)}
+        {/* {defineLocation(event.mode, event.city_id)} */}
+        <div className={styles.location}>
+          <PlaceIcon htmlColor={theme.palette.text.secondary} />
+          <Typography>{event.city}</Typography>
+        </div>
       </div>
     </div>
   );

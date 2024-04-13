@@ -11,7 +11,11 @@ import {
 } from '@mui/material';
 import { Calendar, CustomMenuItem, CustomSelect } from '../../ui-kit';
 import DoneIcon from '@mui/icons-material/Done';
-import { CITIES, PROGRAMMES } from '../../utils/constants';
+
+import {
+  useGetCitiesQuery,
+  useGetTagsQuery,
+} from '../../store/funtech/funtech.api';
 
 const customStyles = {
   borderRadius: '40px',
@@ -23,6 +27,9 @@ const customStyles = {
 export default function Filters() {
   const [discipline, setDiscipline] = React.useState<string[]>([]);
   const [city, setCity] = React.useState<string[]>([]);
+
+  const { data: cities } = useGetCitiesQuery();
+  const { data: tags } = useGetTagsQuery();
 
   const handleChange = (
     event: SelectChangeEvent<unknown>,
@@ -65,12 +72,13 @@ export default function Filters() {
           input={<OutlinedInput label="Направление" />}
           renderValue={selected => handleAdditionalValues(selected as string[])}
         >
-          {PROGRAMMES.map(({ title, id }) => (
-            <CustomMenuItem key={id} value={title}>
-              <ListItemText primary={title} />
-              {discipline.indexOf(title) > -1 && <DoneIcon />}
-            </CustomMenuItem>
-          ))}
+          {tags &&
+            tags.map(({ title, id }) => (
+              <CustomMenuItem key={id} value={title}>
+                <ListItemText primary={title} />
+                {discipline.indexOf(title) > -1 && <DoneIcon />}
+              </CustomMenuItem>
+            ))}
         </CustomSelect>
       </FormControl>
 
@@ -90,12 +98,13 @@ export default function Filters() {
           input={<OutlinedInput label="Место проведения" />}
           renderValue={selected => handleAdditionalValues(selected as string[])}
         >
-          {CITIES.map(({ id, name }) => (
-            <CustomMenuItem key={id} value={name}>
-              <ListItemText primary={name} />
-              {city.indexOf(name) > -1 && <DoneIcon />}
-            </CustomMenuItem>
-          ))}
+          {cities &&
+            cities.map(({ id, name }) => (
+              <CustomMenuItem key={id} value={name}>
+                <ListItemText primary={name} />
+                {city.indexOf(name) > -1 && <DoneIcon />}
+              </CustomMenuItem>
+            ))}
         </CustomSelect>
       </FormControl>
     </div>

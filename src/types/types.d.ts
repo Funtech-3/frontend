@@ -1,16 +1,19 @@
-type EventType = {
+type CityType = {
+  id: number;
+  name: string;
+};
+
+type TagType = {
   id: number;
   title: string;
-  description: string;
-  slug: string;
-  city_id: number;
-  address: string;
-  date: string;
+};
+
+type EventType = {
+  event_id: number;
+  name: string;
+  city: string;
+  date_event: string;
   registration_status: string;
-  tags_id: number;
-  mode: string;
-  type_id: number;
+  tags: TagType[];
   preview_image: string;
-  image: string;
-  favorited_by: number;
 };

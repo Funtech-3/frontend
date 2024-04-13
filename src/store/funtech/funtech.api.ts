@@ -13,7 +13,7 @@ interface LoginResponse {
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://localhost:8000/api/v1/',
+    baseUrl: 'https://funtech.myddns.me/api/v1/',
     prepareHeaders: headers => {
       const authToken = localStorage.getItem('authToken');
       if (authToken) {
@@ -35,7 +35,22 @@ export const api = createApi({
     getFilters: build.query({
       query: () => 'filters/',
     }),
+    getCities: build.query<CityType[], void>({
+      query: () => 'cities/',
+    }),
+    getTags: build.query<TagType[], void>({
+      query: () => 'tags/',
+    }),
+    getEvents: build.query<EventType[], void>({
+      query: () => 'events/',
+    }),
   }),
 });
 
-export const { useLoginMutation, useGetFiltersQuery } = api;
+export const {
+  useLoginMutation,
+  useGetFiltersQuery,
+  useGetCitiesQuery,
+  useGetTagsQuery,
+  useGetEventsQuery,
+} = api;

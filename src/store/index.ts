@@ -1,12 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { api } from './amCrm/amCrm.api';
-
-import { amFiltersReducer } from './amCrm/amFilters.slice';
+import { api } from './funtech/funtech.api';
 
 export const store = configureStore({
   reducer: {
     [api.reducerPath]: api.reducer,
-    amFilters: amFiltersReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(api.middleware),

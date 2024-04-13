@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from '@reduxjs/toolkit';
-import { amFiltersActions } from '../store/amCrm/amFilters.slice';
+import { amFiltersActions } from '../store/funtech/amFilters.slice';
 
 const actions = {
   ...amFiltersActions,
