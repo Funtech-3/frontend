@@ -15,6 +15,7 @@ import heart from '../../assets/images/heart.svg';
 import back from '../../assets/images/back.svg';
 import speaker from '../../assets/images/speaker.svg';
 import map from '../../assets/images/map.svg';
+import yandexgo from '../../assets/images/yandexgo.svg';
 import styles from './styles.module.scss';
 
 export default function EventPage() {
@@ -43,7 +44,7 @@ export default function EventPage() {
       </section>
 
       <section className={styles.paragraph__section}>
-        <h2>О чем этот митап?</h2>
+        <Typography variant="h1">О чем этот митап?</Typography>
         <Typography variant="body1">
           Yet Another Level — это серия митапов про жизнь в IT-индустрии.
           Саморазвитие, прокачка софт-скилов, карьера, управление в IT,
@@ -71,7 +72,7 @@ export default function EventPage() {
         </div>
       </section>
 
-      <section className="speakers__section">
+      <section className={styles.speakers__section}>
         <Typography variant="h1">Спикеры</Typography>
         <div className={styles.cards}>
           <div className={styles.card}>
@@ -145,7 +146,22 @@ export default function EventPage() {
           Россия, Москва, улица Льва Толстого, 16, подъезд Экстрополис
         </Typography>
         <img className={styles.adress__map} src={map} alt="Карта" />
-        <Button>Поехать на такси</Button>
+        <Button>
+          <img src={yandexgo} alt="ЯндексGo" />
+          Поехать на такси
+        </Button>
+      </section>
+      <section className={styles.footer__info}>
+        <div className={styles.about__paragraph}>
+          <Typography variant="body1">4 апреля 2024, 16:00 </Typography>
+          <Typography variant="body1">Москва, Экстрополис</Typography>
+        </div>
+        <Typography variant="h1">About:сloud — infrastructure</Typography>
+        <Button className="about__button">Зарегистрироваться</Button>
+        <Button className="about__like-button">
+          <Button className="registry_open">Регистрация открыта</Button>
+          <img src={heart} alt="like" />
+        </Button>
       </section>
     </main>
   );

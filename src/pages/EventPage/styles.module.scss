@@ -95,18 +95,8 @@
     padding-top: 80px;
     padding-left: 150px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     background-color: rgb(255, 255, 255);
-
-    h2 {
-      color: rgb(34, 34, 34);
-      font-family: 'YS Text', Arial, sans-serif;
-      font-size: 34px;
-      font-weight: 400;
-      line-height: 40px;
-      letter-spacing: 0%;
-      text-align: left;
-    }
 
     .cards {
       display: flex;
@@ -169,35 +159,6 @@
     justify-content: center;
     flex-direction: column;
     background-color: rgb(255, 255, 255);
-
-    .schedule-table {
-      box-sizing: border-box;
-      border-bottom: 3px solid rgb(34, 34, 34);
-      border-collapse: collapse;
-      color: rgb(34, 34, 34);
-      font-family: 'YS Text', Arial, sans-serif;
-      font-size: 20px;
-      font-weight: 400;
-      line-height: 24px;
-      letter-spacing: 0%;
-      text-align: left;
-    }
-
-    .schedule-table th,
-    .schedule-table td {
-      display: flex;
-      flex-direction: row;
-      padding: 8px;
-      border: 1px solid #ddd;
-      box-sizing: border-box;
-      border-bottom: 1px solid rgb(216, 220, 230);
-      background: rgb(244, 246, 249);
-    }
-
-    .schedule-table th {
-      background-color: #ffffff;
-      text-align: left;
-    }
   }
 
   .adress__section {
@@ -226,7 +187,7 @@
     }
   }
 
-  .footer-adress__section {
+  .footer__info {
     display: flex;
   }
 }
