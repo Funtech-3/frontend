@@ -31,7 +31,7 @@ export function Calendar() {
           width: '200px',
           height: '53px',
           backgroundColor: 'white',
-          border: '1px solid hsla(0, 0%, 13%, 0.35)',
+          border: '1px solid rgba(0, 0, 0, 0.23)',
           boxShadow: '0px 2px 8px rgba(0, 20, 51, 0.15)',
           textTransform: 'capitalize',
 

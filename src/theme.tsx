@@ -46,19 +46,27 @@ const theme = createTheme({
     // Add more font styles as needed
   },
   spacing: 4,
-
-  // Ниже можно прописать override компонентом Mui
-
-  // components: {
-  //   MuiCheckbox: {
-  //     styleOverrides: {
-  //       root: {
-  //         fontFamily: 'YS Text, sans-serif',
-
-  //       },
-  //     },
-  //   },
-  // },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          '*::-webkit-scrollbar': {
+            width: '5px' /* Change the width as needed */,
+          },
+          '*::-webkit-scrollbar-track': {
+            margin: '10px',
+            background:
+              'transparent' /* Change the background color as needed */,
+          },
+          '*::-webkit-scrollbar-thumb': {
+            background:
+              'hsla(0, 0%, 13%, 0.55)' /* Change the color of the scrollbar thumb as needed */,
+            borderRadius: '10px',
+          },
+        },
+      },
+    },
+  },
 });
 
 export default theme;

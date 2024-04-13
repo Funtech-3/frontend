@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import { Calendar, CustomMenuItem, CustomSelect } from '../../ui-kit';
 import DoneIcon from '@mui/icons-material/Done';
+import { CITIES, PROGRAMMES } from '../../utils/constants';
 
 const customStyles = {
   borderRadius: '40px',
@@ -18,19 +19,6 @@ const customStyles = {
   border: 'none',
   width: '200px',
 };
-
-const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
-];
 
 export default function Filters() {
   const [discipline, setDiscipline] = React.useState<string[]>([]);
@@ -77,10 +65,10 @@ export default function Filters() {
           input={<OutlinedInput label="Направление" />}
           renderValue={selected => handleAdditionalValues(selected as string[])}
         >
-          {names.map(name => (
-            <CustomMenuItem key={name} value={name}>
-              <ListItemText primary={name} />
-              {discipline.indexOf(name) > -1 && <DoneIcon />}
+          {PROGRAMMES.map(({ title, id }) => (
+            <CustomMenuItem key={id} value={title}>
+              <ListItemText primary={title} />
+              {discipline.indexOf(title) > -1 && <DoneIcon />}
             </CustomMenuItem>
           ))}
         </CustomSelect>
@@ -102,9 +90,10 @@ export default function Filters() {
           input={<OutlinedInput label="Место проведения" />}
           renderValue={selected => handleAdditionalValues(selected as string[])}
         >
-          {names.map(name => (
-            <CustomMenuItem key={name} value={name}>
-              {name}
+          {CITIES.map(({ id, name }) => (
+            <CustomMenuItem key={id} value={name}>
+              <ListItemText primary={name} />
+              {city.indexOf(name) > -1 && <DoneIcon />}
             </CustomMenuItem>
           ))}
         </CustomSelect>
