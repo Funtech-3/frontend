@@ -11,6 +11,10 @@
   &:hover .image::after {
     background-color: hsla(0, 0%, 0%, 0.3);
   }
+
+  &:hover .image {
+    scale: 1.1;
+  }
 }
 
 .imageContainer {
@@ -18,6 +22,7 @@
   width: 100%;
   height: 220px;
   display: flex;
+  overflow: hidden;
 }
 
 .image {
@@ -29,6 +34,7 @@
   top: 0;
   left: 0;
   z-index: -1;
+  transition: scale 0.2s ease-in-out;
 
   &::after {
     content: '';
@@ -45,6 +51,7 @@
 .imageBody,
 .cardBody {
   display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: space-between;
   padding: 16px;
@@ -74,4 +81,24 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.likeButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.imageTopContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

@@ -7,6 +7,7 @@ import Loader from './Loader';
 import CustomAlert from './CustomAlert';
 import CustomMenuItem from './CustomMenuItem';
 import { Calendar } from './Calendar';
+import CustomChip from './CustomChip/index';
 
 export {
   CustomButton,
@@ -18,4 +19,5 @@ export {
   CustomAlert,
   CustomMenuItem,
   Calendar,
+  CustomChip,
 };

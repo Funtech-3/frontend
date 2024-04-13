@@ -1,10 +1,15 @@
-import { Chip, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import PlaceIcon from '@mui/icons-material/Place';
 import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 import styles from './styles.module.scss';
-import { StatusLabel } from '../../ui-kit';
-import { CITIES, REGISTRATION_STATUSES } from '../../utils/constants';
+import { StatusLabel, CustomChip } from '../../ui-kit';
+import {
+  CITIES,
+  PROGRAMMES,
+  REGISTRATION_STATUSES,
+} from '../../utils/constants';
 import theme from '../../theme';
 
 export default function Card({ event }: { event: EventType }) {
@@ -42,6 +47,19 @@ export default function Card({ event }: { event: EventType }) {
     );
   }
 
+  function defineProgramChips(id: number) {
+    return PROGRAMMES.find(p => p.id === id)?.title;
+  }
+
+  function handleLike() {}
+
+  function defineLike(favorited: number) {
+    if (favorited) {
+      return <FavoriteBorderIcon color="secondary" fontSize="large" />;
+    }
+    return <FavoriteBorderIcon color="disabled" fontSize="large" />;
+  }
+
   return (
     <div className={styles.card}>
       <div className={styles.imageContainer}>
@@ -53,10 +71,11 @@ export default function Card({ event }: { event: EventType }) {
         <div className={styles.imageBody}>
           <div className={styles.imageTopContainer}>
             <div className={styles.imageTags}>
-              <Chip label="Chip Outlined" variant="outlined" />
-              <Chip label="Chip Outlined" variant="outlined" />
+              <CustomChip label={defineProgramChips(event.tags_id)} />
             </div>
-            <button className={styles.likeButton}></button>
+            <button className={styles.likeButton} onClick={handleLike}>
+              {defineLike(event.favorited_by)}
+            </button>
           </div>
           <Typography
             className={styles.title}
