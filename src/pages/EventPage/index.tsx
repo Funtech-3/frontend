@@ -1,101 +1,152 @@
 import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
+import Chip from '@mui/material/Chip';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from '@mui/material';
 import { Link } from 'react-router-dom';
-import heart from '../../images/heart.svg';
-import back from '../../images/back.svg';
-import speaker from '../../images/speaker.svg';
->>>>>>> ca4722a (add speakers section)
-import './index.scss';
+import heart from '../../assets/images/heart.svg';
+import back from '../../assets/images/back.svg';
+import speaker from '../../assets/images/speaker.svg';
+import map from '../../assets/images/map.svg';
+import styles from './styles.module.scss';
 
 export default function EventPage() {
   return (
-    <Typography variant="h1">
-      <main className="EventPage">
-        <section className="about__section">
-          <Link to="/" className="about__link">
-            <img src={back} alt="Назад" /> Назад
-          </Link>
-          <Button className="button__black1">Программирование</Button>
-          <Button className="button__black2">Митап</Button>
-          <h1>About:сloud — infrastructure</h1>
-          <div className="about__paragraph">
-            <p className="about__text1">4 апреля 2024, 16:00 </p>
-            <p className="about__text2">Москва, Экстрополис</p>
+    <main className="EventPage">
+      <section className={styles.about__section}>
+        <Link to="/" className="about__link">
+          <img src={back} alt="Назад" /> Назад
+        </Link>
+        <Button variant="contained" color="primary">
+          Программирование
+        </Button>
+        <Button variant="contained" color="primary">
+          Митап
+        </Button>
+        <Typography variant="h1">About:сloud — infrastructure</Typography>
+        <div className={styles.about__paragraph}>
+          <Typography variant="body1">4 апреля 2024, 16:00 </Typography>
+          <Typography variant="body1">Москва, Экстрополис</Typography>
+        </div>
+        <Button className="about__button">Зарегистрироваться</Button>
+        <Button className="about__like-button">
+          <Button className="registry_open">Регистрация открыта</Button>
+          <img src={heart} alt="like" />
+        </Button>
+      </section>
+
+      <section className={styles.paragraph__section}>
+        <h2>О чем этот митап?</h2>
+        <Typography variant="body1">
+          Yet Another Level — это серия митапов про жизнь в IT-индустрии.
+          Саморазвитие, прокачка софт-скилов, карьера, управление в IT,
+          нетворкинг и многое другое.В прошлом году мы говорили о том, как
+          управлять собой, командой, проектом, компанией — и не поседеть к
+          тридцати годам.В этот раз обсудим подход к карьере и жизни, а главное
+          — как оставаться счастливыми на работе.
+        </Typography>
+        <Typography variant="h1">Для кого?</Typography>
+        <Typography variant="body1">
+          Митап будет интересен: архитекторам, разработчикам,
+          DevOps-специалистам, продакт-менеджерам, администраторам систем
+          виртуализации, руководителям, отвечающим за технологии и
+          инфраструктуру
+        </Typography>
+        <div className={styles.chips}>
+          <Chip label="Архитекторы" variant="outlined" />
+          <Chip label="Разработчики" variant="outlined" />
+          <Chip label="DevOps-специалисты" variant="outlined" />
+          <Chip label="Продакт-менеджеры" variant="outlined" />
+          <Chip
+            label="Администраторы систем виртуализации"
+            variant="outlined"
+          />
+        </div>
+      </section>
+
+      <section className="speakers__section">
+        <Typography variant="h1">Спикеры</Typography>
+        <div className={styles.cards}>
+          <div className={styles.card}>
+            <img src={speaker} alt="Speaker" />
+            <Typography variant="body1">Григорий Орлов</Typography>
+            <Typography variant="subtitle1">Yandex Cloud</Typography>
+            <Typography variant="body1">Руководитель разработки</Typography>
           </div>
-          <Button className="about__button">Зарегистрироваться</Button>
-          <Button className="about__like-button">
-            <Button className="registry_open">Регистрация открыта</Button>
-            <img src={heart} alt="like" />
-          </Button>
-        </section>
 
-        <section className="paragraph__section">
-          <h2>О чем этот митап?</h2>
-          <p className="text">
-            Yet Another Level — это серия митапов про жизнь в IT-индустрии.
-            Саморазвитие, прокачка софт-скилов, карьера, управление в IT,
-            нетворкинг и многое другое. В прошлом году мы говорили о том, как
-            управлять собой, командой, проектом, компанией — и не поседеть к
-            тридцати годам. В этот раз обсудим подход к карьере и жизни, а
-            главное — как оставаться счастливыми на работе.
-          </p>
-          <h2>Для кого?</h2>
-          <p className="text">
-            Митап будет интересен: архитекторам, разработчикам,
-            DevOps-специалистам, продакт-менеджерам, администраторам систем
-            виртуализации, руководителям, отвечающим за технологии и
-            инфраструктуру
-          </p>
-          <div className="chips-container">
-            <span className="chips">Архитекторы</span>
-            <span className="chips">Разработчики</span>
-            <span className="chips">DevOps-специалисты</span>
-            <span className="chips">Продакт-менеджеры</span>
-            <span className="chips">Администраторы систем виртуализации</span>
+          <div className={styles.card}>
+            <img src={speaker} alt="Speaker" />
+            <Typography variant="body1">Григорий Орлов</Typography>
+            <Typography variant="subtitle1">Yandex Cloud</Typography>
+            <Typography variant="body1">Руководитель разработки</Typography>
           </div>
-        </section>
 
-        <section className="speakers__section">
-          <h2>Спикеры</h2>
-          <div className="cards">
-            <div className="card">
-              <img src={speaker} alt="Speaker" />
-              <span className="card__name">Григорий Орлов</span>
-              <p className="yandex_cloud">Yandex Cloud</p>
-              <p className="card__profession">
-                Руководитель команды разработки
-              </p>
-            </div>
-
-            <div className="card">
-              <img src={speaker} alt="Speaker" />
-              <span className="card__name">Григорий Орлов</span>
-              <p className="yandex_cloud">Yandex Cloud</p>
-              <p className="card__profession">
-                Руководитель команды разработки
-              </p>
-            </div>
-
-            <div className="card">
-              <img src={speaker} alt="Speaker" />
-              <span className="card__name">Григорий Орлов</span>
-              <p className="yandex_cloud">Yandex Cloud</p>
-              <p className="card__profession">
-                Руководитель команды разработки
-              </p>
-            </div>
-
-            <div className="card">
-              <img src={speaker} alt="Speaker" />
-              <span className="card__name">Григорий Орлов</span>
-              <p className="yandex_cloud">Yandex Cloud</p>
-              <p className="card__profession">
-                Руководитель команды разработки
-              </p>
-            </div>
+          <div className={styles.card}>
+            <img src={speaker} alt="Speaker" />
+            <Typography variant="body1">Григорий Орлов</Typography>
+            <Typography variant="subtitle1">Yandex Cloud</Typography>
+            <Typography variant="body1">Руководитель разработки</Typography>
           </div>
-        </section>
-      </main>
-    </Typography>
+
+          <div className={styles.card}>
+            <img src={speaker} alt="Speaker" />
+            <Typography variant="body1">Григорий Орлов</Typography>
+            <Typography variant="subtitle1">Yandex Cloud</Typography>
+            <Typography variant="body1">Руководитель разработки</Typography>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.program__section}>
+        <Typography variant="h1">Программы</Typography>
+        <TableContainer component={Paper}>
+          <Table className="schedule-table" aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Время</TableCell>
+                <TableCell>Описание</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell>16:00 - 17:00</TableCell>
+                <TableCell>Начало регистрации</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>17:00 - 17:40</TableCell>
+                <TableCell>
+                  Yandex Cloud Interconnect как реализация сетевого сервиса
+                  гибридных облаков. Расскажем, как устроен сервис, связывающий
+                  мир виртуальных сетей с классическими маршрутизаторами и
+                  сетевыми устройствами, и как он позволяет создавать гибридную
+                  облачную инфраструктуру.
+                  <img src={speaker} alt="Speaker" />
+                  <Typography variant="body1">Григорий Орлов</Typography>
+                  <Typography variant="subtitle1">Yandex Cloud</Typography>
+                  <Typography variant="body1">
+                    Руководитель разработки
+                  </Typography>
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </section>
+      <section className={styles.adress__section}>
+        <h2>Адрес</h2>
+        <Typography variant="body1">
+          Россия, Москва, улица Льва Толстого, 16, подъезд Экстрополис
+        </Typography>
+        <img className={styles.adress__map} src={map} alt="Карта" />
+        <Button>Поехать на такси</Button>
+      </section>
+    </main>
   );
 }

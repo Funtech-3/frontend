@@ -1,0 +1,232 @@
+.EventPage {
+  position: relative;
+
+  .about__section {
+    position: relative;
+    min-width: 1440px;
+    min-height: 576px;
+    background-image: linear-gradient(
+        to right,
+        rgba(91, 98, 104, 0.5),
+        rgba(194, 198, 199, 0.5)
+      ),
+      url('../../assets/images/bg-image.svg');
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 90%;
+
+    z-index: 0;
+
+    .about__link {
+      position: absolute;
+      top: 30%;
+      left: 5%;
+      color: rgb(255, 255, 255);
+      font-family: 'YS Text', Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: 0%;
+      text-align: left;
+      text-decoration-line: underline;
+      z-index: 2;
+    }
+
+    img {
+      padding-right: 5px;
+    }
+
+    .about__paragraph {
+      position: absolute;
+      top: 63%;
+      left: 5%;
+      display: flex;
+      flex-direction: row;
+      gap: 17px;
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin-bottom: 300px;
+    }
+  }
+
+  .paragraph__section {
+    min-width: 1440px;
+    min-height: 646px;
+    padding-top: 80px;
+    padding-left: 100px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+
+    .text {
+      width: 916px;
+      height: 216px;
+      left: 106px;
+      right: 418px;
+      top: 144px;
+      bottom: 286px;
+      color: rgb(34, 34, 34);
+      font-family: 'YS Text', Arial, sans-serif;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: 0%;
+      text-align: left;
+    }
+
+    .chips {
+      width: 104px;
+      height: 30px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 9px;
+      align-items: center;
+      margin: 0;
+      padding-top: 0;
+      padding-left: 250px;
+    }
+  }
+
+  .speakers__section {
+    min-width: 1440px;
+    min-height: 592px;
+    padding-top: 80px;
+    padding-left: 150px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+
+    h2 {
+      color: rgb(34, 34, 34);
+      font-family: 'YS Text', Arial, sans-serif;
+      font-size: 34px;
+      font-weight: 400;
+      line-height: 40px;
+      letter-spacing: 0%;
+      text-align: left;
+    }
+
+    .cards {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-evenly;
+      gap: 20px;
+
+      .card {
+        width: 292px;
+        height: 352px;
+        border-radius: 16px;
+        box-shadow:
+          0px 2px 8px 0px rgba(0, 20, 51, 0.15),
+          0px 0px 1px 0px rgba(0, 20, 51, 0.3);
+        background: rgb(255, 255, 255);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 24px 16px 24px 16px;
+
+        .card__name {
+          color: rgb(34, 34, 34);
+          font-family: 'YS Text', Arial, sans-serif;
+          font-size: 34px;
+          font-weight: 400;
+          line-height: 40px;
+          letter-spacing: 0%;
+          text-align: left;
+        }
+
+        .yandex_cloud {
+          color: rgba(34, 34, 34, 0.55);
+          font-family: 'YS Text', Arial, sans-serif;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 20px;
+          letter-spacing: 0%;
+          text-align: left;
+        }
+
+        .card__profession {
+          color: rgb(34, 34, 34);
+          font-family: 'YS Text', Arial, sans-serif;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 20px;
+          letter-spacing: 0%;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .program__section {
+    min-width: 1440px;
+    min-height: 592px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+
+    .schedule-table {
+      box-sizing: border-box;
+      border-bottom: 3px solid rgb(34, 34, 34);
+      border-collapse: collapse;
+      color: rgb(34, 34, 34);
+      font-family: 'YS Text', Arial, sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: 0%;
+      text-align: left;
+    }
+
+    .schedule-table th,
+    .schedule-table td {
+      display: flex;
+      flex-direction: row;
+      padding: 8px;
+      border: 1px solid #ddd;
+      box-sizing: border-box;
+      border-bottom: 1px solid rgb(216, 220, 230);
+      background: rgb(244, 246, 249);
+    }
+
+    .schedule-table th {
+      background-color: #ffffff;
+      text-align: left;
+    }
+  }
+
+  .adress__section {
+    min-width: 1440px;
+    min-height: 592px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+
+    .adress__text {
+      color: rgb(34, 34, 34);
+      font-family: 'YS Text', Arial, sans-serif;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: 0%;
+      text-align: left;
+    }
+
+    .adress__map {
+      padding-left: 96px;
+      padding-right: 96px;
+      padding-bottom: 80px;
+    }
+  }
+
+  .footer-adress__section {
+    display: flex;
+  }
+}
