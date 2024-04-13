@@ -1,21 +1,16 @@
 import * as React from 'react';
 
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import { SelectChangeEvent } from '@mui/material/Select';
 import styles from './styles.module.scss';
-import { Typography } from '@mui/material';
-import { CustomSelect } from '../../ui-kit';
-
-const MenuProps = {
-  PaperProps: {
-    style: {
-      width: 250,
-    },
-  },
-};
+import {
+  FormControl,
+  InputLabel,
+  ListItemText,
+  OutlinedInput,
+  SelectChangeEvent,
+  Typography,
+} from '@mui/material';
+import { Calendar, CustomMenuItem, CustomSelect } from '../../ui-kit';
+import DoneIcon from '@mui/icons-material/Done';
 
 const customStyles = {
   borderRadius: '40px',
@@ -38,13 +33,18 @@ const names = [
 ];
 
 export default function Filters() {
-  const [personName, setPersonName] = React.useState<string[]>([]);
+  const [discipline, setDiscipline] = React.useState<string[]>([]);
+  const [city, setCity] = React.useState<string[]>([]);
 
-  const handleChange = (event: SelectChangeEvent<unknown>) => {
+  const handleChange = (
+    event: SelectChangeEvent<unknown>,
+    setter: React.Dispatch<React.SetStateAction<string[]>>,
+  ) => {
+    console.log(event);
     const {
       target: { value },
     } = event;
-    setPersonName(
+    setter(
       typeof value === 'string'
         ? (value as string).split(',')
         : (value as string[]),
@@ -71,40 +71,23 @@ export default function Filters() {
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
           multiple
-          value={personName}
-          MenuProps={MenuProps}
+          value={discipline}
           sx={customStyles}
-          onChange={handleChange}
+          onChange={event => handleChange(event, setDiscipline)}
           input={<OutlinedInput label="Направление" />}
           renderValue={selected => handleAdditionalValues(selected as string[])}
         >
           {names.map(name => (
-            <MenuItem key={name} value={name}>
-              {name}
-            </MenuItem>
+            <CustomMenuItem key={name} value={name}>
+              <ListItemText primary={name} />
+              {discipline.indexOf(name) > -1 && <DoneIcon />}
+            </CustomMenuItem>
           ))}
         </CustomSelect>
       </FormControl>
-      <FormControl sx={{ m: 1, width: 200 }}>
-        <InputLabel id="demo-multiple-name-label" className={styles.label}>
-          Дата события
-        </InputLabel>
-        <CustomSelect
-          labelId="demo-multiple-name-label"
-          id="demo-multiple-name"
-          value={personName}
-          MenuProps={MenuProps}
-          onChange={handleChange}
-          input={<OutlinedInput label="Дата события" />}
-          renderValue={selected => handleAdditionalValues(selected as string[])}
-        >
-          {names.map(name => (
-            <MenuItem key={name} value={name}>
-              {name}
-            </MenuItem>
-          ))}
-        </CustomSelect>
-      </FormControl>
+
+      <Calendar />
+
       <FormControl sx={{ m: 1, width: 200 }}>
         <InputLabel id="demo-multiple-name-label" className={styles.label}>
           Место проведения
@@ -113,17 +96,16 @@ export default function Filters() {
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
           multiple
-          value={personName}
-          MenuProps={MenuProps}
+          value={city}
           sx={customStyles}
-          onChange={handleChange}
+          onChange={event => handleChange(event, setCity)}
           input={<OutlinedInput label="Место проведения" />}
           renderValue={selected => handleAdditionalValues(selected as string[])}
         >
           {names.map(name => (
-            <MenuItem key={name} value={name}>
+            <CustomMenuItem key={name} value={name}>
               {name}
-            </MenuItem>
+            </CustomMenuItem>
           ))}
         </CustomSelect>
       </FormControl>

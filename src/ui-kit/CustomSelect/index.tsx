@@ -11,6 +11,16 @@ const CustomSelect: React.FC<SelectProps> = ({ children, ...props }) => {
         border: 'none',
       }}
       IconComponent={KeyboardArrowDownIcon}
+      MenuProps={{
+        PaperProps: {
+          style: {
+            marginTop: '8px',
+            borderRadius: '16px',
+            maxHeight: '400px',
+            overflowY: 'auto',
+          },
+        },
+      }}
     >
       {children}
     </Select>

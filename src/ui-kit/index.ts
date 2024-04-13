@@ -5,6 +5,8 @@ import StatusLabel from './StatusLabel';
 import CustomSelect from './CustomSelect';
 import Loader from './Loader';
 import CustomAlert from './CustomAlert';
+import CustomMenuItem from './CustomMenuItem';
+import { Calendar } from './Calendar';
 
 export {
   CustomButton,
@@ -14,4 +16,6 @@ export {
   CustomSelect,
   Loader,
   CustomAlert,
+  CustomMenuItem,
+  Calendar,
 };
