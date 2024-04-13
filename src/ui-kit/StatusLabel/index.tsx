@@ -28,8 +28,8 @@ const StatusLabel: React.FC<StatusLabelProps> = ({
 
   const containerStyle = {
     backgroundColor: backgroundColor || 'transparent',
-    padding: '5px 10px 5px 10px',
-    borderRadius: '100px',
+    padding: backgroundColor ? '5px 10px 5px 10px' : '0',
+    borderRadius: backgroundColor ? '100px' : '0',
     display: 'flex',
     alignItems: 'center',
     color: backgroundColor
