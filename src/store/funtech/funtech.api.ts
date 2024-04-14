@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { formatDate } from '../../utils/formatDate';
 
 interface LoginRequest {
   email: string;
@@ -47,14 +48,15 @@ export const api = createApi({
 
         Object.entries(params).forEach(([key, value]) => {
           if (value !== null) {
-            if (Array.isArray(value)) {
+            if (value instanceof Date) {
+              searchParams.append(key, formatDate(value.toString(), 'numeric'));
+            } else if (Array.isArray(value)) {
               value.forEach(item => searchParams.append(key, item.toString()));
             } else {
               searchParams.append(key, value.toString());
             }
           }
         });
-
         return `events/?${searchParams.toString()}`;
       },
     }),

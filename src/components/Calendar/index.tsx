@@ -2,22 +2,26 @@ import { ForwardedRef, forwardRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import { registerLocale, setDefaultLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import CustomButton from '../CustomButton';
+import CustomButton from '../../ui-kit/CustomButton';
 
 import './calendar.scss';
 
 import { ru } from 'date-fns/locale/ru';
 import { useActions } from '../../hooks/actions';
-import { formatDate } from '../../utils/formatDate';
+import { useAppSelector } from '../../hooks/redux';
 
 registerLocale('ru', ru);
 setDefaultLocale('ru');
 
 export function Calendar() {
+  const { date_after, date_before } = useAppSelector(state => state.filters);
+
   const [dateRange, setDateRange] = useState<[Date | null, Date | null]>([
-    null,
-    null,
-  ]);
+    date_after || null,
+    date_before || null,
+  ] as [Date | null, Date | null]);
+
+  console.log(dateRange);
   const [startDate, endDate] = dateRange;
 
   const { setDateAfter, setDateBefore } = useActions();
@@ -25,8 +29,8 @@ export function Calendar() {
   const handleChange = (dates: [Date | null, Date | null]) => {
     setDateRange(dates);
 
-    setDateAfter(dates[0] ? formatDate(dates[0].toString(), 'numeric') : '');
-    setDateBefore(dates[1] ? formatDate(dates[1].toString(), 'numeric') : '');
+    setDateAfter(dates[0]);
+    setDateBefore(dates[1]);
   };
 
   const CustomInput = forwardRef((props, ref) => {

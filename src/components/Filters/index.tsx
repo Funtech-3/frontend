@@ -10,7 +10,7 @@ import {
   SelectChangeEvent,
   Typography,
 } from '@mui/material';
-import { Calendar, CustomMenuItem, CustomSelect } from '../../ui-kit';
+import { CustomMenuItem, CustomSelect } from '../../ui-kit';
 import DoneIcon from '@mui/icons-material/Done';
 
 import {
@@ -20,6 +20,7 @@ import {
 import { useActions } from '../../hooks/actions';
 import CustomSwitch from '../../ui-kit/CustomSwitch/index';
 import { useAppSelector } from '../../hooks/redux';
+import { Calendar } from '../Calendar';
 
 const customStyles = {
   borderRadius: '40px',

@@ -4,11 +4,35 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://yastatic.net/s3/passport-sdk/autofill/v1/sdk-suggest-with-polyfills-latest.js"></script>
+    <script src="https://yastatic.net/s3/passport-sdk/autofill/v1/sdk-suggest-token-with-polyfills-latest.js"></script>
     <title>Funtech</title>
   </head>
 
   <body>
     <div id="root"></div>
+
+    <script>
+      window.onload = function () {
+        window.YaAuthSuggest.init(
+          {
+            client_id: '015159bd0d5347e8bb7874bd053e25c1',
+            response_type: 'token',
+            redirect_uri: 'https://funtech.myddns.me/token',
+          },
+          'https://funtech.myddns.me',
+        )
+          .then(({ handler }) => handler())
+          .then(data => console.log('Сообщение с токеном', data))
+          .catch(error => console.log('Обработка ошибки', error));
+      };
+    </script>
+
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      YaSendSuggestToken('https://funtech.myddns.me', {
+        flag: true,
+      });
+    </script>
   </body>
 </html>

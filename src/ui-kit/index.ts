@@ -6,7 +6,6 @@ import CustomSelect from './CustomSelect';
 import Loader from './Loader';
 import CustomAlert from './CustomAlert';
 import CustomMenuItem from './CustomMenuItem';
-import { Calendar } from './Calendar';
 import CustomChip from './CustomChip/index';
 
 export {
@@ -18,6 +17,5 @@ export {
   Loader,
   CustomAlert,
   CustomMenuItem,
-  Calendar,
   CustomChip,
 };
