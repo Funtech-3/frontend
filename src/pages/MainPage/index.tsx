@@ -25,15 +25,21 @@ export default function MainPage() {
     ...filters,
   });
 
-  const { data } = useGetYaUserInfoQuery();
+  const { data, refetch } = useGetYaUserInfoQuery();
   const [postData] = usePostYaUserInfoMutation();
 
   useEffect(() => {
-    if (data) {
-      postData(data)
-        .unwrap()
-        .then(res => setUser(res));
+    const oathToken = localStorage.getItem('authToken');
+
+    if (oathToken) {
+      refetch();
     }
+  }, []);
+
+  useEffect(() => {
+    postData(data)
+      .unwrap()
+      .then(res => setUser(res));
   }, [data]);
 
   function handleShowMore() {
