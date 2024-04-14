@@ -23,7 +23,10 @@
           'https://funtech.myddns.me',
         )
           .then(({ handler }) => handler())
-          .then(data => localStorage.setItem('authToken', data))
+          .then(data => {
+            localStorage.setItem('authToken', data.token);
+            console.log(data);
+          })
           .catch(error => console.log('Обработка ошибки', error));
       };
     </script>
