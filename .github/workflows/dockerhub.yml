@@ -26,14 +26,12 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:latest
  
-  trigger_backend_workflow:
+  trigger:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Trigger Backend Workflow
-        run: |
-          curl -X POST \
-            -H "Authorization: token ${{ secrets.BACKEND_REPO_ACCESS_TOKEN }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/Funtech-3/backend/actions/workflows/main.yml/dispatches \
-            -d '{"ref": ["main","dev"]}'
+      - name: Call workflow in backend repository
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: Funtech-3/backend
+          event-type: run-backend-workflow
