@@ -69,6 +69,6 @@ type FiltersStateType = {
   limit: number;
   offset: number;
   search?: string;
-  show_old?: boolean;
+  show_old?: false | null;
   tags?: number[];
 };

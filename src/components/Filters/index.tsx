@@ -3,6 +3,7 @@ import * as React from 'react';
 import styles from './styles.module.scss';
 import {
   FormControl,
+  FormControlLabel,
   InputLabel,
   ListItemText,
   OutlinedInput,
@@ -17,6 +18,8 @@ import {
   useGetTagsQuery,
 } from '../../store/funtech/funtech.api';
 import { useActions } from '../../hooks/actions';
+import CustomSwitch from '../../ui-kit/CustomSwitch/index';
+import { useAppSelector } from '../../hooks/redux';
 
 const customStyles = {
   borderRadius: '40px',
@@ -26,8 +29,14 @@ const customStyles = {
 };
 
 export default function Filters() {
-  const [discipline, setDiscipline] = React.useState<number[]>([]);
-  const [city, setCity] = React.useState<number[]>([]);
+  const {
+    show_old: showOldValue,
+    tags: tagsValue,
+    city: cityValue,
+  } = useAppSelector(state => state.filters);
+
+  const [discipline, setDiscipline] = React.useState<number[]>(tagsValue ?? []);
+  const [city, setCity] = React.useState<number[]>(cityValue ?? []);
 
   const { data: cities } = useGetCitiesQuery();
   const { data: tags } = useGetTagsQuery();
@@ -128,6 +137,15 @@ export default function Filters() {
             ))}
         </CustomSelect>
       </FormControl>
+
+      <FormControlLabel
+        control={<CustomSwitch />}
+        label="Показывать прошедшие"
+        checked={showOldValue !== false ? true : false}
+        onChange={() =>
+          filters.setShowOld(showOldValue === false ? null : false)
+        }
+      />
     </div>
   );
 }

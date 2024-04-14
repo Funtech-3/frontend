@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState: FiltersStateType = {
   limit: 3,
   offset: 0,
+  show_old: false,
 };
 
 export const filtersSlice = createSlice({

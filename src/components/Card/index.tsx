@@ -51,9 +51,17 @@ export default function Card({ event }: { event: EventType }) {
     setFavorited(prev => !prev);
   }
 
+  function defineOld(date: string) {
+    const dateNow = new Date();
+    const dateEvent = new Date(date);
+    return dateNow < dateEvent;
+  }
+
   return (
     <div
-      className={styles.card}
+      className={
+        styles.card + ' ' + (defineOld(event.date_event) ? styles.card_old : '')
+      }
       onClick={() => navigate(`/event/${event.event_id}`)}
     >
       <div className={styles.imageContainer}>
