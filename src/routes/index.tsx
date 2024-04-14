@@ -19,7 +19,10 @@ const router = createBrowserRouter(
     <>
       <Route path="/" element={<Layout />} errorElement={<NotFoundPage />}>
         <Route index element={<MainPage />} />
-        <Route path="event/:eventId" element={<EventPage />} />
+        <Route path="event/">
+          <Route path=":id" element={<EventPage />} />
+        </Route>
+
         <Route path="*" element={<NotFoundPage />} />
         {/* <Route element={<ProtectedRoute />}> */}
         <Route path="my-events" element={<MyEventsPage />} />

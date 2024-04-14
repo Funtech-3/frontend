@@ -44,6 +44,9 @@ export const api = createApi({
     getEvents: build.query<EventType[], void>({
       query: () => 'events/',
     }),
+    getEvent: build.query<DetailedEventType, string>({
+      query: id => `events/event-slug-${id}/`,
+    }),
   }),
 });
 
@@ -53,4 +56,5 @@ export const {
   useGetCitiesQuery,
   useGetTagsQuery,
   useGetEventsQuery,
+  useGetEventQuery,
 } = api;

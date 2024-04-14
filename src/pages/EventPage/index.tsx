@@ -10,15 +10,22 @@ import {
   TableRow,
   Paper,
 } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import heart from '../../assets/images/heart.svg';
 import back from '../../assets/images/back.svg';
 import speaker from '../../assets/images/speaker.svg';
 import map from '../../assets/images/map.svg';
 import yandexgo from '../../assets/images/yandexgo.svg';
 import styles from './styles.module.scss';
+import { useGetEventQuery } from '../../store/funtech/funtech.api';
 
 export default function EventPage() {
+  const { id } = useParams();
+
+  console.log(id);
+  const { data } = useGetEventQuery(id as string);
+  console.log(data);
+
   return (
     <main className={styles.EventPage}>
       <section className={styles.about__section}>
