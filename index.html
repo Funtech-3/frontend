@@ -24,8 +24,7 @@
         )
           .then(({ handler }) => handler())
           .then(data => {
-            localStorage.setItem('authToken', data.token);
-            console.log(data);
+            localStorage.setItem('authToken', data.access_token);
           })
           .catch(error => console.log('Обработка ошибки', error));
       };

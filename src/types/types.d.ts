@@ -72,3 +72,38 @@ type FiltersStateType = {
   show_old?: false | null;
   tags?: number[];
 };
+
+type UserType = {
+  yandex_id?: number;
+  first_name?: string;
+  last_name?: string;
+  username?: string;
+  email?: string;
+  telegram_username?: string;
+  position?: string;
+  work_place?: string;
+  avatar?: string;
+};
+
+type YaIdResponseType = {
+  id: string;
+  login: string;
+  client_id: string;
+  display_name: string;
+  real_name: string;
+  first_name: string;
+  last_name: string;
+  sex?: string;
+  default_email: string;
+  emails: string[];
+  birthday: string;
+  default_avatar_id: string;
+  is_avatar_empty: boolean;
+  default_phone: DefaultPhoneType;
+  psuid: string;
+};
+
+type DefaultPhoneType = {
+  id: number;
+  number: string;
+};

@@ -2,15 +2,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { formatDate } from '../../utils/formatDate';
 
-interface LoginRequest {
-  email: string;
-  password: string;
-}
-
-interface LoginResponse {
-  auth_token: string;
-}
-
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
@@ -23,15 +14,28 @@ export const api = createApi({
       return headers;
     },
   }),
-  tagTypes: ['Tags'],
+
   endpoints: build => ({
-    login: build.mutation<LoginResponse, LoginRequest>({
-      query: credentials => ({
-        url: 'auth/token/login',
-        method: 'POST',
-        body: credentials,
-      }),
-      invalidatesTags: ['Tags'],
+    getYaUserInfo: build.query<YaIdResponseType, void>({
+      query: () => {
+        const oauthToken = localStorage.getItem('authToken');
+        return {
+          url: 'https://login.yandex.ru/info?',
+          method: 'GET',
+          headers: {
+            Authorization: `OAuth ${oauthToken}`,
+          },
+        };
+      },
+    }),
+    postYaUserInfo: build.mutation({
+      query: data => {
+        return {
+          url: 'user/',
+          method: 'POST',
+          body: data,
+        };
+      },
     }),
     getFilters: build.query({
       query: () => 'filters/',
@@ -67,10 +71,11 @@ export const api = createApi({
 });
 
 export const {
-  useLoginMutation,
+  useGetYaUserInfoQuery,
   useGetFiltersQuery,
   useGetCitiesQuery,
   useGetTagsQuery,
   useGetEventsQuery,
   useGetEventQuery,
+  usePostYaUserInfoMutation,
 } = api;

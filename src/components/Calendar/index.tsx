@@ -21,7 +21,6 @@ export function Calendar() {
     date_before || null,
   ] as [Date | null, Date | null]);
 
-  console.log(dateRange);
   const [startDate, endDate] = dateRange;
 
   const { setDateAfter, setDateBefore } = useActions();

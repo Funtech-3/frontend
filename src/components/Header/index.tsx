@@ -1,13 +1,19 @@
 import logo from '../../assets/images/logo.svg';
-import avatar from '../../assets/images/avatar.webp';
 
 import styles from './styles.module.scss';
 import { Link } from 'react-router-dom';
 import { InputAdornment, TextField, Typography } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import EventIcon from '@mui/icons-material/Event';
+import { useAppSelector } from '../../hooks/redux';
 
 const Header = () => {
+  const avatar = useAppSelector(state => state.user.user.avatar);
+
+  function handleAvatarUrl(url: string) {
+    return url.replace('/media/https%3A', 'https:');
+  }
+
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
@@ -45,7 +51,11 @@ const Header = () => {
           </Typography>
         </Link>
         <Link to="/profile" className={styles.link}>
-          <img className={styles.avatar} src={avatar} alt="Аватар" />{' '}
+          <img
+            className={styles.avatar}
+            src={(avatar && handleAvatarUrl(avatar)) || ''}
+            alt="Аватар"
+          />
         </Link>
       </div>
     </header>

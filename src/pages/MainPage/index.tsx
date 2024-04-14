@@ -1,8 +1,13 @@
+import { useEffect } from 'react';
 import Card from '../../components/Card';
 import Filters from '../../components/Filters';
 import { useActions } from '../../hooks/actions';
 import { useAppSelector } from '../../hooks/redux';
-import { useGetEventsQuery } from '../../store/funtech/funtech.api';
+import {
+  useGetEventsQuery,
+  useGetYaUserInfoQuery,
+  usePostYaUserInfoMutation,
+} from '../../store/funtech/funtech.api';
 import { CustomButton } from '../../ui-kit';
 
 import styles from './styles.module.scss';
@@ -12,11 +17,24 @@ export default function MainPage() {
   const { limit, offset, ...filters } = useAppSelector(state => state.filters);
   const { setLimit } = useActions();
 
+  const { setUser } = useActions();
+
   const { data: events } = useGetEventsQuery({
     limit: limit,
     offset: offset,
     ...filters,
   });
+
+  const { data } = useGetYaUserInfoQuery();
+  const [postData] = usePostYaUserInfoMutation();
+
+  useEffect(() => {
+    if (data) {
+      postData(data)
+        .unwrap()
+        .then(res => setUser(res));
+    }
+  }, [data]);
 
   function handleShowMore() {
     setLimit(limit + limit);

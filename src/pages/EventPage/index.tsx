@@ -22,7 +22,6 @@ import { useGetEventQuery } from '../../store/funtech/funtech.api';
 export default function EventPage() {
   const { id } = useParams();
 
-  console.log(id);
   const { data } = useGetEventQuery(id as string);
   console.log(data);
 
