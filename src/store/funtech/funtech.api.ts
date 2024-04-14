@@ -41,8 +41,11 @@ export const api = createApi({
     getTags: build.query<TagType[], void>({
       query: () => 'tags/',
     }),
-    getEvents: build.query<EventType[], void>({
-      query: () => 'events/',
+    getEvents: build.query<ApiResponseType<EventType>, FiltersStateType>({
+      query: params => ({
+        url: 'events/',
+        params: { ...params },
+      }),
     }),
     getEvent: build.query<DetailedEventType, string>({
       query: id => `events/event-slug-${id}/`,

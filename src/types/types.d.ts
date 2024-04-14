@@ -51,3 +51,23 @@ type SpeakerType = {
   position: string;
   image: string;
 };
+
+type ApiResponseType<T> = {
+  count: number;
+  next: string;
+  previous: string;
+  results: T[];
+};
+
+type FiltersStateType = {
+  city?: string[];
+  date_after?: string;
+  date_before?: string;
+  is_favorited?: boolean;
+  is_registrated?: boolean;
+  limit: number;
+  offset: number;
+  search?: string;
+  show_old?: boolean;
+  tags?: string[];
+};
