@@ -6,7 +6,7 @@ const CustomMenuItem = ({
   ...props
 }: {
   children?: React.ReactNode | string;
-  value: string;
+  value: number | string;
   props?: MenuItemProps;
 }) => {
   return (

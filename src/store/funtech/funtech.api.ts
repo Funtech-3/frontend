@@ -42,10 +42,21 @@ export const api = createApi({
       query: () => 'tags/',
     }),
     getEvents: build.query<ApiResponseType<EventType>, FiltersStateType>({
-      query: params => ({
-        url: 'events/',
-        params: { ...params },
-      }),
+      query: params => {
+        const searchParams = new URLSearchParams();
+
+        Object.entries(params).forEach(([key, value]) => {
+          if (value !== null) {
+            if (Array.isArray(value)) {
+              value.forEach(item => searchParams.append(key, item.toString()));
+            } else {
+              searchParams.append(key, value.toString());
+            }
+          }
+        });
+
+        return `events/?${searchParams.toString()}`;
+      },
     }),
     getEvent: build.query<DetailedEventType, string>({
       query: id => `events/event-slug-${id}/`,

@@ -8,10 +8,14 @@ import { CustomButton } from '../../ui-kit';
 import styles from './styles.module.scss';
 
 export default function MainPage() {
-  const { limit, offset } = useAppSelector(state => state.filters);
+  const { limit, offset, ...filters } = useAppSelector(state => state.filters);
   const { setLimit } = useActions();
 
-  const { data: events } = useGetEventsQuery({ limit: limit, offset: offset });
+  const { data: events } = useGetEventsQuery({
+    limit: limit,
+    offset: offset,
+    ...filters,
+  });
 
   function handleShowMore() {
     setLimit(limit + limit);
@@ -21,10 +25,12 @@ export default function MainPage() {
     <main className={styles.main}>
       <Filters />
       <section className={styles.cards}>
-        {events &&
-          events.results.map(event => (
-            <Card key={event.event_id} event={event} />
-          ))}
+        <div className={styles.cardsContainer}>
+          {events &&
+            events.results.map(event => (
+              <Card key={event.event_id} event={event} />
+            ))}
+        </div>
         {events && events.next !== null && (
           <CustomButton
             onClick={handleShowMore}

@@ -1,29 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-type FiltersStateType = {
-  city: string[];
-  date_after: string;
-  date_before: string;
-  is_favorited: boolean;
-  is_registrated: boolean;
-  limit: number;
-  offset: number;
-  search: string;
-  show_old: boolean;
-  tags: string[];
-};
-
 const initialState: FiltersStateType = {
-  city: [],
-  date_after: '',
-  date_before: '',
-  is_favorited: false,
-  is_registrated: false,
   limit: 3,
   offset: 0,
-  search: '',
-  show_old: false,
-  tags: [],
 };
 
 export const filtersSlice = createSlice({
@@ -31,7 +10,7 @@ export const filtersSlice = createSlice({
   initialState,
   reducers: {
     reset: () => initialState,
-    setCity: (state, action) => {
+    setCities: (state, action) => {
       state.city = action.payload;
     },
     setTags: (state, action) => {

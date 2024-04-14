@@ -107,8 +107,7 @@ export default function Card({ event }: { event: EventType }) {
           fontSize={16}
           lineHeight={1.4}
         >
-          {/* {event.description} */}
-          Описание еще не добавлено
+          {event.description || 'Описание отсутствует'}
         </Typography>
         {/* {defineLocation(event.mode, event.city_id)} */}
         <div className={styles.location}>

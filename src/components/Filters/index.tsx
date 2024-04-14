@@ -16,6 +16,7 @@ import {
   useGetCitiesQuery,
   useGetTagsQuery,
 } from '../../store/funtech/funtech.api';
+import { useActions } from '../../hooks/actions';
 
 const customStyles = {
   borderRadius: '40px',
@@ -25,30 +26,38 @@ const customStyles = {
 };
 
 export default function Filters() {
-  const [discipline, setDiscipline] = React.useState<string[]>([]);
-  const [city, setCity] = React.useState<string[]>([]);
+  const [discipline, setDiscipline] = React.useState<number[]>([]);
+  const [city, setCity] = React.useState<number[]>([]);
 
   const { data: cities } = useGetCitiesQuery();
   const { data: tags } = useGetTagsQuery();
 
+  const filters = useActions();
+
   const handleChange = (
     event: SelectChangeEvent<unknown>,
-    setter: React.Dispatch<React.SetStateAction<string[]>>,
+    setter: React.Dispatch<React.SetStateAction<number[]>>,
   ) => {
-    console.log(event);
     const {
       target: { value },
     } = event;
+
     setter(
       typeof value === 'string'
-        ? (value as string).split(',')
-        : (value as string[]),
+        ? (value.split(',').map(Number) as number[])
+        : (value as number[]),
     );
   };
-  function handleAdditionalValues(items: string[]) {
+
+  function handleAdditionalValues(items: number[], selectName: string) {
     return (
       <div className={styles.selected}>
-        <Typography>{items.at(-1)}</Typography>
+        <Typography>
+          {selectName === 'city' &&
+            cities?.find(item => item.id === items.at(-1))?.name}
+          {selectName === 'discipline' &&
+            tags?.find(item => item.id === items.at(-1))?.title}
+        </Typography>
         <Typography color="grey" sx={{ fontWeight: '500' }}>
           {items.length > 1 ? ` +${items.length - 1}` : ''}
         </Typography>
@@ -59,24 +68,30 @@ export default function Filters() {
   return (
     <div className={styles.filters}>
       <FormControl sx={{ m: 1, width: 200 }}>
-        <InputLabel id="demo-multiple-name-label" className={styles.label}>
+        <InputLabel id="discipline-label" className={styles.label}>
           Направление
         </InputLabel>
         <CustomSelect
-          labelId="demo-multiple-name-label"
-          id="demo-multiple-name"
+          labelId="discipline-label"
+          id="discipline"
+          name="discipline"
           multiple
           value={discipline}
           sx={customStyles}
-          onChange={event => handleChange(event, setDiscipline)}
+          onChange={event => {
+            handleChange(event, setDiscipline);
+            filters.setTags(event.target.value as string[]);
+          }}
           input={<OutlinedInput label="Направление" />}
-          renderValue={selected => handleAdditionalValues(selected as string[])}
+          renderValue={selected =>
+            handleAdditionalValues(selected as number[], 'discipline')
+          }
         >
           {tags &&
             tags.map(({ title, id }) => (
-              <CustomMenuItem key={id} value={title}>
+              <CustomMenuItem key={id} value={id}>
                 <ListItemText primary={title} />
-                {discipline.indexOf(title) > -1 && <DoneIcon />}
+                {discipline.indexOf(id) > -1 && <DoneIcon />}
               </CustomMenuItem>
             ))}
         </CustomSelect>
@@ -85,24 +100,30 @@ export default function Filters() {
       <Calendar />
 
       <FormControl sx={{ m: 1, width: 200 }}>
-        <InputLabel id="demo-multiple-name-label" className={styles.label}>
+        <InputLabel id="city-label" className={styles.label}>
           Место проведения
         </InputLabel>
         <CustomSelect
-          labelId="demo-multiple-name-label"
-          id="demo-multiple-name"
+          labelId="city-label"
+          id="city"
           multiple
+          name="city"
           value={city}
           sx={customStyles}
-          onChange={event => handleChange(event, setCity)}
+          onChange={event => {
+            handleChange(event, setCity);
+            filters.setCities(event.target.value as string[]);
+          }}
           input={<OutlinedInput label="Место проведения" />}
-          renderValue={selected => handleAdditionalValues(selected as string[])}
+          renderValue={selected =>
+            handleAdditionalValues(selected as number[], 'city')
+          }
         >
           {cities &&
             cities.map(({ id, name }) => (
-              <CustomMenuItem key={id} value={name}>
+              <CustomMenuItem key={id} value={id}>
                 <ListItemText primary={name} />
-                {city.indexOf(name) > -1 && <DoneIcon />}
+                {city.indexOf(id) > -1 && <DoneIcon />}
               </CustomMenuItem>
             ))}
         </CustomSelect>

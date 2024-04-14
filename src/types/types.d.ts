@@ -12,6 +12,7 @@ type EventType = {
   event_id: number;
   name: string;
   city: string;
+  description: string;
   date_event: string;
   registration_status: string;
   tags: TagType[];
@@ -60,7 +61,7 @@ type ApiResponseType<T> = {
 };
 
 type FiltersStateType = {
-  city?: string[];
+  city?: number[];
   date_after?: string;
   date_before?: string;
   is_favorited?: boolean;
@@ -69,5 +70,5 @@ type FiltersStateType = {
   offset: number;
   search?: string;
   show_old?: boolean;
-  tags?: string[];
+  tags?: number[];
 };
