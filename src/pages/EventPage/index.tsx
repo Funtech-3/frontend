@@ -20,31 +20,68 @@ import styles from './styles.module.scss';
 
 export default function EventPage() {
   return (
-    <main className="EventPage">
+    <main className={styles.EventPage}>
       <section className={styles.about__section}>
         <Link to="/" className="about__link">
           <img src={back} alt="Назад" /> Назад
         </Link>
-        <Button variant="contained" color="primary">
-          Программирование
-        </Button>
-        <Button variant="contained" color="primary">
-          Митап
-        </Button>
-        <Typography variant="h1">About:сloud — infrastructure</Typography>
+        <div className={styles.primary_buttons}>
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{
+              borderRadius: '40px',
+            }}
+          >
+            Программирование
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{
+              borderRadius: '40px',
+            }}
+          >
+            Митап
+          </Button>
+        </div>
+        <Typography variant="h3">About:сloud — infrastructure</Typography>
         <div className={styles.about__paragraph}>
           <Typography variant="body1">4 апреля 2024, 16:00 </Typography>
           <Typography variant="body1">Москва, Экстрополис</Typography>
         </div>
-        <Button className="about__button">Зарегистрироваться</Button>
-        <Button className="about__like-button">
-          <Button className="registry_open">Регистрация открыта</Button>
-          <img src={heart} alt="like" />
-        </Button>
+        <div className={styles.secondary_buttons}>
+          <Button
+            variant="contained"
+            color="secondary"
+            sx={{
+              borderRadius: '40px',
+            }}
+          >
+            Зарегистрироваться
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            sx={{
+              borderRadius: '40px',
+            }}
+          >
+            <Button
+              color="secondary"
+              sx={{
+                borderRadius: '40px',
+              }}
+            >
+              Регистрация открыта
+            </Button>
+            <img src={heart} alt="like" />
+          </Button>
+        </div>
       </section>
 
       <section className={styles.paragraph__section}>
-        <Typography variant="h1">О чем этот митап?</Typography>
+        <Typography variant="h4">О чем этот митап?</Typography>
         <Typography variant="body1">
           Yet Another Level — это серия митапов про жизнь в IT-индустрии.
           Саморазвитие, прокачка софт-скилов, карьера, управление в IT,
@@ -53,7 +90,7 @@ export default function EventPage() {
           тридцати годам.В этот раз обсудим подход к карьере и жизни, а главное
           — как оставаться счастливыми на работе.
         </Typography>
-        <Typography variant="h1">Для кого?</Typography>
+        <Typography variant="h4">Для кого?</Typography>
         <Typography variant="body1">
           Митап будет интересен: архитекторам, разработчикам,
           DevOps-специалистам, продакт-менеджерам, администраторам систем
@@ -73,7 +110,7 @@ export default function EventPage() {
       </section>
 
       <section className={styles.speakers__section}>
-        <Typography variant="h1">Спикеры</Typography>
+        <Typography variant="h5">Спикеры</Typography>
         <div className={styles.cards}>
           <div className={styles.card}>
             <img src={speaker} alt="Speaker" />
@@ -157,10 +194,22 @@ export default function EventPage() {
           <Typography variant="body1">Москва, Экстрополис</Typography>
         </div>
         <Typography variant="h1">About:сloud — infrastructure</Typography>
-        <Button className="about__button">Зарегистрироваться</Button>
-        <Button className="about__like-button">
-          <Button className="registry_open">Регистрация открыта</Button>
-          <img src={heart} alt="like" />
+        <Button
+          variant="contained"
+          color="secondary"
+          sx={{
+            borderRadius: '40px',
+          }}
+        >
+          Зарегистрироваться
+        </Button>
+        <Button
+          color="secondary"
+          sx={{
+            borderRadius: '40px',
+          }}
+        >
+          Регистрация открыта
         </Button>
       </section>
     </main>

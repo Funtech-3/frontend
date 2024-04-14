@@ -1,7 +1,8 @@
 .EventPage {
+  background-color: rgb(255, 255, 255);
+
   .about__section {
-    min-width: 1440px;
-    min-height: 576px;
+    height: 476px;
     background-image: linear-gradient(
         to right,
         rgba(91, 98, 104, 0.5),
@@ -12,7 +13,14 @@
     background-repeat: no-repeat;
     background-position-x: 100%;
     background-position-y: 90%;
-    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 20px;
+    padding-top: 100px;
+    column-gap: 20px;
+    padding-bottom: 80px;
 
     img {
       padding-right: 5px;
@@ -26,26 +34,36 @@
       align-items: flex-start;
       margin-bottom: 300px;
     }
+
+    .primary_buttons {
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+    }
+
+    .secondary_buttons {
+      display: flex;
+      flex-direction: row;
+    }
   }
 
   .paragraph__section {
-    min-width: 1440px;
-    min-height: 646px;
     padding-top: 80px;
-    padding-left: 100px;
     background-color: rgb(255, 255, 255);
+    color: rgb(34, 34, 34);
     display: flex;
     flex-direction: column;
+    padding-left: 20px;
   }
 
   .speakers__section {
-    min-width: 1440px;
-    min-height: 592px;
     padding-top: 80px;
     padding-left: 150px;
     display: flex;
     flex-direction: row;
+    padding-left: 20px;
     background-color: rgb(255, 255, 255);
+    color: rgb(34, 34, 34);
 
     .cards {
       display: flex;
@@ -72,21 +90,20 @@
   }
 
   .program__section {
-    min-width: 1440px;
-    min-height: 592px;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
     background-color: rgb(255, 255, 255);
   }
 
   .adress__section {
-    min-width: 1440px;
-    min-height: 592px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding-left: 20px;
     background-color: rgb(255, 255, 255);
 
     .adress__map {
