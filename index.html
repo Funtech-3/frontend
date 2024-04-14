@@ -21,18 +21,9 @@
             redirect_uri: 'https://funtech.myddns.me',
           },
           'https://funtech.myddns.me',
-          {
-            view: 'button',
-            parentId: 'buttonContainerId',
-            buttonSize: 's',
-            buttonView: 'additional',
-            buttonTheme: 'light',
-            buttonBorderRadius: '20',
-            buttonIcon: 'yaEng',
-          },
         )
           .then(({ handler }) => handler())
-          .then(data => console.log('Сообщение с токеном', data))
+          .then(data => localStorage.setItem('authToken', data))
           .catch(error => console.log('Обработка ошибки', error));
       };
     </script>
