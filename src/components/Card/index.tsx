@@ -1,6 +1,5 @@
 import { Typography } from '@mui/material';
 import PlaceIcon from '@mui/icons-material/Place';
-// import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 import styles from './styles.module.scss';

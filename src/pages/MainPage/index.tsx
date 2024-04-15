@@ -1,15 +1,17 @@
-import Card from '../../components/Card';
+import CardsList from '../../components/CardsList';
 import Filters from '../../components/Filters';
 import { useActions } from '../../hooks/actions';
 import { useAppSelector } from '../../hooks/redux';
 import { useGetEventsQuery } from '../../store/funtech/funtech.api';
-import { CustomButton } from '../../ui-kit';
 
 import styles from './styles.module.scss';
-import { Typography } from '@mui/material';
 
 export default function MainPage() {
-  const { limit, offset, ...filters } = useAppSelector(state => state.filters);
+  const {
+    limit = 0,
+    offset,
+    ...filters
+  } = useAppSelector(state => state.filters);
   const { setLimit } = useActions();
 
   const { data: events } = useGetEventsQuery({
@@ -25,29 +27,7 @@ export default function MainPage() {
   return (
     <div className={styles.mainPage}>
       <Filters />
-      <section className={styles.cards}>
-        <div className={styles.cardsContainer}>
-          {events && events.results && events.results.length === 0 ? (
-            <Typography color="error">
-              По вашему запросу ничего не найдено
-            </Typography>
-          ) : (
-            events &&
-            events.results.map(event => (
-              <Card key={event.event_id} event={event} />
-            ))
-          )}
-        </div>
-        {events && events.next !== null && (
-          <CustomButton
-            onClick={handleShowMore}
-            variant="outlined"
-            color="primary"
-          >
-            + Показать еще
-          </CustomButton>
-        )}
-      </section>
+      {events && <CardsList events={events} handleShowMore={handleShowMore} />}
     </div>
   );
 }

@@ -14,7 +14,7 @@ export const api = createApi({
       return headers;
     },
   }),
-
+  tagTypes: ['Events'],
   endpoints: build => ({
     postYaUserInfo: build.mutation({
       query: data => {
@@ -51,6 +51,7 @@ export const api = createApi({
         });
         return `events/?${searchParams.toString()}`;
       },
+      providesTags: ['Events'],
     }),
     getEvent: build.query<DetailedEventType, string>({
       query: slug => `events/${slug}/`,
@@ -62,6 +63,7 @@ export const api = createApi({
           method: 'POST',
         };
       },
+      invalidatesTags: ['Events'],
     }),
     deleteLike: build.mutation({
       query: slug => {
@@ -70,6 +72,7 @@ export const api = createApi({
           method: 'DELETE',
         };
       },
+      invalidatesTags: ['Events'],
     }),
   }),
 });

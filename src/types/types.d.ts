@@ -70,10 +70,10 @@ type FiltersStateType = {
   date_before?: string;
   is_favorited?: boolean;
   is_registrated?: boolean;
-  limit: number;
-  offset: number;
+  limit?: number;
+  offset?: number;
   search?: string;
-  show_old?: false | null;
+  show_old?: true | false | null;
   tags?: number[];
 };
 

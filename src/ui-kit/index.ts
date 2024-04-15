@@ -6,7 +6,8 @@ import CustomSelect from './CustomSelect';
 import Loader from './Loader';
 import CustomAlert from './CustomAlert';
 import CustomMenuItem from './CustomMenuItem';
-import CustomChip from './CustomChip/index';
+import CustomChip from './CustomChip';
+import CustomTabs from './CustomTabs';
 
 export {
   CustomButton,
@@ -18,4 +19,5 @@ export {
   CustomAlert,
   CustomMenuItem,
   CustomChip,
+  CustomTabs,
 };
