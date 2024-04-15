@@ -6,6 +6,20 @@ import avatar from '../../assets/images/avatar.webp';
 
 const RegisterModal = () => {
   const [open, setOpen] = useState(false);
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [email, setEmail] = useState('');
+  const [telegram, setTelegram] = useState('');
+  const [number, setNumber] = useState('');
+  const [job, setJob] = useState('');
+  const [profession, setProfession] = useState('');
+  const [nameError, setNameError] = useState(false);
+  const [surnameError, setSurnameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [telegramError, setTelegramError] = useState(false);
+  const [numberError, setNumberError] = useState(false);
+  const [jobError, setJobError] = useState(false);
+  const [professionError, setProfessionError] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -13,6 +27,44 @@ const RegisterModal = () => {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleSubmit = () => {
+    if (!name) {
+      setNameError(true);
+    } else {
+      setNameError(false);
+    }
+    if (!surname) {
+      setSurnameError(true);
+    } else {
+      setSurnameError(false);
+    }
+    if (!email.includes('@')) {
+      setEmailError(true);
+    } else {
+      setEmailError(false);
+    }
+    if (!telegram.includes('@')) {
+      setTelegramError(true);
+    } else {
+      setTelegramError(false);
+    }
+    if (number.length < 8) {
+      setNumberError(true);
+    } else {
+      setNumberError(false);
+    }
+    if (!job) {
+      setJobError(true);
+    } else {
+      setJobError(false);
+    }
+    if (!profession) {
+      setProfessionError(true);
+    } else {
+      setProfessionError(false);
+    }
   };
 
   const body = (
@@ -93,6 +145,10 @@ const RegisterModal = () => {
           size="small"
           fullWidth
           margin="normal"
+          value={name}
+          onChange={e => setName(e.target.value)}
+          error={nameError}
+          helperText={nameError ? 'Введите имя' : ''}
           sx={{
             borderRadius: '40px',
             background: 'rgb(244, 246, 249)',
@@ -125,6 +181,10 @@ const RegisterModal = () => {
           size="small"
           fullWidth
           margin="normal"
+          value={surname}
+          onChange={e => setSurname(e.target.value)}
+          error={surnameError}
+          helperText={surnameError ? 'Введите фамилию' : ''}
           sx={{
             borderRadius: '40px',
             background: 'rgb(244, 246, 249)',
@@ -157,6 +217,10 @@ const RegisterModal = () => {
           size="small"
           fullWidth
           margin="normal"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          error={emailError}
+          helperText={emailError ? 'Введите корректную почту' : ''}
           sx={{
             borderRadius: '40px',
             background: 'rgb(244, 246, 249)',
@@ -189,6 +253,10 @@ const RegisterModal = () => {
           size="small"
           fullWidth
           margin="normal"
+          value={number}
+          onChange={e => setNumber(e.target.value)}
+          error={numberError}
+          helperText={numberError ? 'Введите корректный номер' : ''}
           sx={{
             borderRadius: '40px',
             background: 'rgb(244, 246, 249)',
@@ -220,6 +288,10 @@ const RegisterModal = () => {
           size="small"
           fullWidth
           margin="normal"
+          value={telegram}
+          onChange={e => setTelegram(e.target.value)}
+          error={telegramError}
+          helperText={telegramError ? 'Введите корректный ник' : ''}
           sx={{
             borderRadius: '40px',
             background: 'rgb(244, 246, 249)',
@@ -251,6 +323,10 @@ const RegisterModal = () => {
           size="small"
           fullWidth
           margin="normal"
+          value={job}
+          onChange={e => setJob(e.target.value)}
+          error={jobError}
+          helperText={jobError ? 'Введите должность' : ''}
           sx={{
             borderRadius: '40px',
             background: 'rgb(244, 246, 249)',
@@ -282,6 +358,10 @@ const RegisterModal = () => {
           size="small"
           fullWidth
           margin="normal"
+          value={profession}
+          onChange={e => setProfession(e.target.value)}
+          error={professionError}
+          helperText={professionError ? 'Введите должность' : ''}
           sx={{
             borderRadius: '40px',
             background: 'rgb(244, 246, 249)',
@@ -324,6 +404,7 @@ const RegisterModal = () => {
             color="secondary"
             size="small"
             margin="normal"
+            onClick={handleSubmit}
             sx={{
               borderRadius: '40px',
             }}
