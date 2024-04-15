@@ -10,11 +10,14 @@ import theme from '../../theme';
 import { useState } from 'react';
 import { Favorite } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../hooks/redux';
 
 export default function Card({ event }: { event: EventType }) {
   const [favorited, setFavorited] = useState(false);
 
   const navigate = useNavigate();
+
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
 
   // function defineLocation(mode: string, city?: string) {
   //   switch (mode) {
@@ -77,13 +80,15 @@ export default function Card({ event }: { event: EventType }) {
                 <CustomChip key={tag.id} label={tag.title} />
               ))}
             </div>
-            <button className={styles.likeButton} onClick={handleLike}>
-              {favorited ? (
-                <Favorite fontSize="large" htmlColor="#fff" />
-              ) : (
-                <FavoriteBorderIcon fontSize="large" htmlColor="#fff" />
-              )}
-            </button>
+            {isLoggedIn && (
+              <button className={styles.likeButton} onClick={handleLike}>
+                {favorited ? (
+                  <Favorite fontSize="large" htmlColor="#fff" />
+                ) : (
+                  <FavoriteBorderIcon fontSize="large" htmlColor="#fff" />
+                )}
+              </button>
+            )}
           </div>
           <Typography
             className={styles.title}

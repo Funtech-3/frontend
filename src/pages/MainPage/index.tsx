@@ -1,44 +1,22 @@
-import { useEffect, useState } from 'react';
 import Card from '../../components/Card';
 import Filters from '../../components/Filters';
 import { useActions } from '../../hooks/actions';
 import { useAppSelector } from '../../hooks/redux';
-import {
-  useGetEventsQuery,
-  usePostYaUserInfoMutation,
-} from '../../store/funtech/funtech.api';
+import { useGetEventsQuery } from '../../store/funtech/funtech.api';
 import { CustomButton } from '../../ui-kit';
 
 import styles from './styles.module.scss';
 import { Typography } from '@mui/material';
-import { useGetYaUserInfoQuery } from '../../store/funtech/ya.api';
 
 export default function MainPage() {
   const { limit, offset, ...filters } = useAppSelector(state => state.filters);
-  const { setLimit, setUser } = useActions();
-  const [token] = useState(localStorage.getItem('authToken') || '');
+  const { setLimit } = useActions();
 
   const { data: events } = useGetEventsQuery({
     limit: limit,
     offset: offset,
     ...filters,
   });
-
-  const { data, refetch } = useGetYaUserInfoQuery();
-  const [postData] = usePostYaUserInfoMutation();
-
-  useEffect(() => {
-    if (token !== '') {
-      refetch();
-    }
-  }, [token]);
-
-  useEffect(() => {
-    if (!data) return;
-    postData(data)
-      .unwrap()
-      .then(res => setUser(res));
-  }, [data]);
 
   function handleShowMore() {
     setLimit(limit + limit);

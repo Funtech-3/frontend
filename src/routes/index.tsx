@@ -13,6 +13,7 @@ import {
 } from './components';
 
 import Layout from '../components/Layout';
+import ProtectedRoute from '../components/ProtectedRoute';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,11 +25,10 @@ const router = createBrowserRouter(
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />
-        {/* <Route element={<ProtectedRoute />}> */}
-        <Route path="my-events" element={<MyEventsPage />} />
-        <Route path="profile" element={<ProfilePage />} />
-
-        {/* </Route> */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="my-events" element={<MyEventsPage />} />
+          <Route path="profile" element={<ProfilePage />} />
+        </Route>
       </Route>
     </>,
   ),
