@@ -10,6 +10,7 @@ type TagType = {
 
 type EventType = {
   event_id: number;
+  slug: string;
   name: string;
   city: string;
   description: string;
@@ -17,6 +18,9 @@ type EventType = {
   registration_status: string;
   tags: TagType[];
   preview_image: string;
+  is_in_favorites?: boolean;
+  is_registrated?: boolean;
+  user_registration_status?: string;
 };
 
 type DetailedEventType = {

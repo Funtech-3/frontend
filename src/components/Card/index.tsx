@@ -7,38 +7,22 @@ import styles from './styles.module.scss';
 import { StatusLabel, CustomChip } from '../../ui-kit';
 import { REGISTRATION_STATUSES } from '../../utils/constants';
 import theme from '../../theme';
-import { useState } from 'react';
+
 import { Favorite } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux';
+import {
+  useDeleteLikeMutation,
+  usePostLikeMutation,
+} from '../../store/funtech/funtech.api';
 
 export default function Card({ event }: { event: EventType }) {
-  const [favorited, setFavorited] = useState(false);
+  const [postLike] = usePostLikeMutation();
+  const [deleteLike] = useDeleteLikeMutation();
 
   const navigate = useNavigate();
 
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
-
-  // function defineLocation(mode: string, city?: string) {
-  //   switch (mode) {
-  //     case 'ONLINE':
-  //       return (
-  //         <div className={styles.location}>
-  //           <VideoCameraFrontIcon htmlColor={theme.palette.text.secondary} />
-  //           <Typography>Онлайн</Typography>
-  //         </div>
-  //       );
-  //     case 'OFFLINE':
-  //       return (
-  //         <div className={styles.location}>
-  //           <PlaceIcon htmlColor={theme.palette.text.secondary} />
-  //           <Typography>{city}</Typography>
-  //         </div>
-  //       );
-  //     default:
-  //       return null;
-  //   }
-  // }
 
   function defineStatus(status: string) {
     return (
@@ -49,9 +33,12 @@ export default function Card({ event }: { event: EventType }) {
     );
   }
 
-  function handleLike(event: React.MouseEvent) {
-    event.stopPropagation();
-    setFavorited(prev => !prev);
+  function handleLike(favorited: boolean, id: string, e: React.MouseEvent) {
+    e.stopPropagation();
+    if (favorited) {
+      postLike(id);
+    }
+    deleteLike(id);
   }
 
   function defineOld(date: string) {
@@ -81,8 +68,13 @@ export default function Card({ event }: { event: EventType }) {
               ))}
             </div>
             {isLoggedIn && (
-              <button className={styles.likeButton} onClick={handleLike}>
-                {favorited ? (
+              <button
+                className={styles.likeButton}
+                onClick={(e: React.MouseEvent) =>
+                  handleLike(!!event.is_in_favorites, event.slug, e)
+                }
+              >
+                {event.is_in_favorites ? (
                   <Favorite fontSize="large" htmlColor="#fff" />
                 ) : (
                   <FavoriteBorderIcon fontSize="large" htmlColor="#fff" />

@@ -53,7 +53,23 @@ export const api = createApi({
       },
     }),
     getEvent: build.query<DetailedEventType, string>({
-      query: id => `events/event-slug-${id}/`,
+      query: slug => `events/${slug}/`,
+    }),
+    postLike: build.mutation({
+      query: slug => {
+        return {
+          url: `events/${slug}/favorite/`,
+          method: 'POST',
+        };
+      },
+    }),
+    deleteLike: build.mutation({
+      query: slug => {
+        return {
+          url: `events/${slug}/favorite/`,
+          method: 'DELETE',
+        };
+      },
     }),
   }),
 });
@@ -65,4 +81,6 @@ export const {
   useGetEventsQuery,
   useGetEventQuery,
   usePostYaUserInfoMutation,
+  usePostLikeMutation,
+  useDeleteLikeMutation,
 } = api;
