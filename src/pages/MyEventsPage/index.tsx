@@ -15,7 +15,7 @@ export default function MyEventsPage() {
   function defineQueryParams(tabValue: string) {
     switch (tabValue) {
       case 'Прошедшие':
-        return { is_registrated: true, show_old: false };
+        return { is_registrated: true, show_old: true };
       case 'Избранное':
         return { is_favorited: true };
       default:
