@@ -27,14 +27,15 @@ export default function Auth() {
         localStorage.setItem('authToken', data.access_token);
       })
       .then(() => {
-        refetch();
-      })
-      .then((data: any) => {
-        postData(data)
+        refetch()
           .unwrap()
-          .then(res => {
-            setUser(res);
-            setLoggedIn(true);
+          .then((data: any) => {
+            postData(data)
+              .unwrap()
+              .then(res => {
+                setUser(res);
+                setLoggedIn(true);
+              });
           });
       })
       .catch((error: any) => console.log('Обработка ошибки', error));
