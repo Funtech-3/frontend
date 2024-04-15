@@ -15,9 +15,8 @@ import { useGetYaUserInfoQuery } from '../../store/funtech/ya.api';
 
 export default function MainPage() {
   const { limit, offset, ...filters } = useAppSelector(state => state.filters);
-  const { setLimit } = useActions();
+  const { setLimit, setUser } = useActions();
   const oathToken = localStorage.getItem('authToken');
-  const { setUser } = useActions();
 
   const { data: events } = useGetEventsQuery({
     limit: limit,

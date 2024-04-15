@@ -11,7 +11,7 @@ const Header = () => {
   const avatar = useAppSelector(state => state.user.user.avatar);
 
   function handleAvatarUrl(url: string) {
-    return url.replace('/media/https%3A', 'https:');
+    return url.replace('/media/https%3A', 'https:/');
   }
 
   return (
