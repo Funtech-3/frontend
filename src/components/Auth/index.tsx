@@ -30,6 +30,7 @@ export default function Auth() {
         refetch()
           .unwrap()
           .then((data: any) => {
+            localStorage.setItem('yandex_id', data.id);
             postData(data)
               .unwrap()
               .then(res => {
