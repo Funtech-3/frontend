@@ -5,18 +5,18 @@ import { useActions } from '../../hooks/actions';
 import { useAppSelector } from '../../hooks/redux';
 import {
   useGetEventsQuery,
-  useGetYaUserInfoQuery,
   usePostYaUserInfoMutation,
 } from '../../store/funtech/funtech.api';
 import { CustomButton } from '../../ui-kit';
 
 import styles from './styles.module.scss';
 import { Typography } from '@mui/material';
+import { useGetYaUserInfoQuery } from '../../store/funtech/ya.api';
 
 export default function MainPage() {
   const { limit, offset, ...filters } = useAppSelector(state => state.filters);
   const { setLimit } = useActions();
-
+  const oathToken = localStorage.getItem('authToken');
   const { setUser } = useActions();
 
   const { data: events } = useGetEventsQuery({
@@ -29,12 +29,10 @@ export default function MainPage() {
   const [postData] = usePostYaUserInfoMutation();
 
   useEffect(() => {
-    const oathToken = localStorage.getItem('authToken');
-
     if (oathToken) {
       refetch();
     }
-  }, []);
+  }, [oathToken]);
 
   useEffect(() => {
     postData(data)

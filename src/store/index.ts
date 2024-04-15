@@ -1,16 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { api } from './funtech/funtech.api';
+import { yaApi } from './funtech/ya.api';
 import { filtersReducer } from './funtech/filters.slice';
 import { userReducer } from './funtech/user.slice';
 
 export const store = configureStore({
   reducer: {
     [api.reducerPath]: api.reducer,
+    [yaApi.reducerPath]: yaApi.reducer,
     filters: filtersReducer,
     user: userReducer,
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(api.middleware),
+    getDefaultMiddleware().concat(api.middleware, yaApi.middleware),
 });
 
 export type AppDispatch = typeof store.dispatch;

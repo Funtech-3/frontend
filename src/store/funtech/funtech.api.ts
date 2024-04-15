@@ -16,18 +16,6 @@ export const api = createApi({
   }),
 
   endpoints: build => ({
-    getYaUserInfo: build.query<YaIdResponseType, void>({
-      query: () => {
-        const oauthToken = localStorage.getItem('authToken');
-        return {
-          url: 'https://login.yandex.ru/info?',
-          method: 'GET',
-          headers: {
-            Authorization: `OAuth ${oauthToken}`,
-          },
-        };
-      },
-    }),
     postYaUserInfo: build.mutation({
       query: data => {
         return {
@@ -71,7 +59,6 @@ export const api = createApi({
 });
 
 export const {
-  useGetYaUserInfoQuery,
   useGetFiltersQuery,
   useGetCitiesQuery,
   useGetTagsQuery,
