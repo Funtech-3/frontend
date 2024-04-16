@@ -1,5 +1,5 @@
 import Button from '@mui/material/Button';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { CustomButton } from '../../ui-kit/index';
 import { Modal } from '@mui/material';
 import { CustomChip } from '../../ui-kit/index';
@@ -14,9 +14,8 @@ import {
   TableRow,
   Paper,
 } from '@mui/material';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import heart from '../../assets/images/heart.svg';
-import back from '../../assets/images/back.svg';
 import eclipse from '../../assets/images/eclipse.svg';
 import speaker from '../../assets/images/speaker.svg';
 import speaker2 from '../../assets/images/speaker2.svg';
@@ -26,6 +25,7 @@ import map from '../../assets/images/map.svg';
 import yandexgo from '../../assets/images/yandexgo.svg';
 import styles from './styles.module.scss';
 import { useGetEventQuery } from '../../store/funtech/funtech.api';
+import { BackButton } from '../../ui-kit/';
 
 export default function EventPage() {
   const { id } = useParams();
@@ -41,16 +41,7 @@ export default function EventPage() {
   return (
     <main className={styles.EventPage}>
       <header className={styles.about__section}>
-        <Link
-          to="/"
-          sx={{
-            color: 'rgb(255, 255, 255)',
-            textAlign: 'left',
-            textDecorationLine: 'underline',
-          }}
-        >
-          <img src={back} alt="Назад" /> Назад
-        </Link>
+        <BackButton />
         <div className={styles.buttons}>
           <CustomButton
             variant="contained"

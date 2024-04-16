@@ -8,6 +8,7 @@ import CustomAlert from './CustomAlert';
 import CustomMenuItem from './CustomMenuItem';
 import CustomChip from './CustomChip';
 import CustomTabs from './CustomTabs';
+import BackButton from './BackButton';
 
 export {
   CustomButton,
@@ -20,4 +21,5 @@ export {
   CustomMenuItem,
   CustomChip,
   CustomTabs,
+  BackButton,
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button, Modal, Box, TextField, Typography } from '@mui/material';
 import styles from './styles.module.scss';
 import CustomCheckBox from '../../ui-kit/CustomCheckBox/index';
@@ -403,7 +403,6 @@ const RegisterModal = () => {
             variant="contained"
             color="secondary"
             size="small"
-            margin="normal"
             onClick={handleSubmit}
             sx={{
               borderRadius: '40px',

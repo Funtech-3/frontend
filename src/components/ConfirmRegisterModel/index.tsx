@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button, Modal, Box, Typography } from '@mui/material';
 import styles from './styles.module.scss';
+import { useNavigate } from 'react-router-dom';
 
-const ConfirmRegisterModal = ({ onGoToMyEvents }) => {
+const ConfirmRegisterModal = () => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleOpen = () => {
     setOpen(true);
@@ -15,7 +17,7 @@ const ConfirmRegisterModal = ({ onGoToMyEvents }) => {
 
   const handleGoToMyEvents = () => {
     handleClose();
-    onGoToMyEvents();
+    navigate('/my-events');
   };
 
   const body = (
@@ -79,7 +81,6 @@ const ConfirmRegisterModal = ({ onGoToMyEvents }) => {
           variant="contained"
           color="secondary"
           size="small"
-          margin="normal"
           onClick={handleGoToMyEvents}
           sx={{
             borderRadius: '40px',

@@ -59,25 +59,25 @@ export default function Card({
             message: error.data.detail,
           });
         });
+    } else {
+      deleteLike(id)
+        .unwrap()
+        .then(() => {
+          setAlert({
+            isOpen: true,
+            severity: 'success',
+            message: 'Мероприятие успешно удалено из избранного',
+          });
+        })
+        .catch(error => {
+          console.log(error);
+          setAlert({
+            isOpen: true,
+            severity: 'error',
+            message: error.data.detail,
+          });
+        });
     }
-
-    deleteLike(id)
-      .unwrap()
-      .then(() => {
-        setAlert({
-          isOpen: true,
-          severity: 'success',
-          message: 'Мероприятие успешно удалено из избранного',
-        });
-      })
-      .catch(error => {
-        console.log(error);
-        setAlert({
-          isOpen: true,
-          severity: 'error',
-          message: error.data.detail,
-        });
-      });
   }
 
   function defineOld(date: string) {
