@@ -1,0 +1,119 @@
+.EventPage {
+  background-color: rgb(255, 255, 255);
+
+  .about__section {
+    height: 476px;
+    background-image: linear-gradient(
+        to right,
+        rgba(91, 98, 104, 0.5),
+        rgba(194, 198, 199, 0.5)
+      ),
+      url('../../assets/images/bg-image.jpg');
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 20px;
+    padding-top: 100px;
+    column-gap: 20px;
+    padding-bottom: 80px;
+
+    img {
+      padding-right: 5px;
+    }
+
+    .about__paragraph {
+      display: flex;
+      flex-direction: row;
+      gap: 17px;
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin-bottom: 300px;
+    }
+
+    .primary_buttons {
+      display: flex;
+      flex-direction: row;
+      gap: 5px;
+    }
+
+    .secondary_buttons {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  .paragraph__section {
+    padding-top: 80px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(34, 34, 34);
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+  }
+
+  .speakers__section {
+    padding-top: 80px;
+    padding-left: 150px;
+    display: flex;
+    flex-direction: row;
+    padding-left: 20px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(34, 34, 34);
+
+    .cards {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-evenly;
+      gap: 20px;
+
+      .card {
+        width: 292px;
+        height: 352px;
+        border-radius: 16px;
+        box-shadow:
+          0px 2px 8px 0px rgba(0, 20, 51, 0.15),
+          0px 0px 1px 0px rgba(0, 20, 51, 0.3);
+        background: rgb(255, 255, 255);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 24px 16px 24px 16px;
+      }
+    }
+  }
+
+  .program__section {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgb(255, 255, 255);
+  }
+
+  .adress__section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-left: 20px;
+    background-color: rgb(255, 255, 255);
+
+    .adress__map {
+      padding-left: 96px;
+      padding-right: 96px;
+      padding-bottom: 80px;
+    }
+  }
+
+  .footer__info {
+    display: flex;
+  }
+}

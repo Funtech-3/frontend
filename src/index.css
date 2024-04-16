@@ -3,9 +3,21 @@
 :root {
   color-scheme: light dark;
   font-family: 'YS Text', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+body {
+  margin: 0;
 }

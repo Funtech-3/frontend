@@ -1,58 +1,68 @@
 import { createTheme } from '@mui/material/styles';
 import './assets/fonts/fonts.module.css';
 
-// Create a theme instance.
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#FEF339', // Цвет акцентных кнопок
-      dark: '#222222', // Цвет черных кнопок
-      light: '#F4F6F9', // Цвет контролов, инпутов
+      main: '#222222',
+      dark: 'hsla(0, 0%, 10%, 1)',
+      light: 'hsla(0, 0%, 13%, 0.9)',
       contrastText: '#FFFFFF',
     },
+    secondary: {
+      main: '#FEF339',
+      dark: '#F8E735',
+      light: '#F4F6F9',
+    },
     error: {
-      main: '#FF4544', // Цвет ошибки
+      main: '#FF4544',
     },
     warning: {
-      main: '#FFCF53', // Цвет предупреждения
+      main: '#FFCF53',
     },
     success: {
-      main: '#29D46D', // Цвет успешного выполнения
+      main: '#29D46D',
     },
     background: {
-      default: 'hsla(0, 0%, 100%, 1)', // Цвет фона по умолчанию
+      default: 'hsla(0, 0%, 100%, 1)',
     },
     text: {
-      primary: '#222222', // Основной цвет текста
-      secondary: 'hsla(0, 0%, 13%, 0.55)', // Вторичный цвет текста
+      primary: '#222222',
+      secondary: 'hsla(0, 0%, 13%, 0.55)',
       disabled: 'hsla(0, 0%, 13%, 0.45)',
     },
   },
   typography: {
-    fontFamily: 'YS Text, Arial, sans-serif', // Default font for most text
+    fontFamily: 'YS Text, Arial, sans-serif',
     fontSize: 14,
     h1: {
-      fontFamily: 'YS Display, Arial, sans-serif', // Custom font for h1
+      fontFamily: 'YS Display, Arial, sans-serif',
+      fontSize: 34,
     },
     button: {
-      fontFamily: 'YS Text, Arial, sans-serif', // Custom font for buttons
+      fontFamily: 'YS Text, Arial, sans-serif',
     },
-    // Add more font styles as needed
   },
   spacing: 4,
-
-  // Ниже можно прописать override компонентом Mui
-
-  // components: {
-  //   MuiCheckbox: {
-  //     styleOverrides: {
-  //       root: {
-  //         fontFamily: 'YS Text, sans-serif',
-
-  //       },
-  //     },
-  //   },
-  // },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          '*::-webkit-scrollbar': {
+            width: '5px',
+          },
+          '*::-webkit-scrollbar-track': {
+            margin: '10px',
+            background: 'transparent',
+          },
+          '*::-webkit-scrollbar-thumb': {
+            background: 'hsla(0, 0%, 13%, 0.55)',
+            borderRadius: '10px',
+          },
+        },
+      },
+    },
+  },
 });
 
 export default theme;

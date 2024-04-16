@@ -1,0 +1,13 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  margin-inline: auto;
+  height: 100vh;
+  box-sizing: border-box;
+  max-width: 1228px;
+  gap: 22px;
+}
+
+.main {
+  flex-grow: 1;
+}

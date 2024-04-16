@@ -6,26 +6,28 @@
   "scripts": {
     "dev": "vite --port 3000 --open",
     "build": "tsc && vite build",
+    "start": "vite preview --port 3000 --open",
     "lint": "eslint . --ext .tsx .",
     "lint:fix": "eslint --fix src \"src/**/*.{scss,css,json,ts,tsx}\" --report-unused-disable-directives ",
     "format": "prettier --write 'src/**/*.{ts,tsx,scss,css,json}'",
-    "preview": "vite preview",
     "prepare": "husky",
     "commit": "cz"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@mui/icons-material": "^5.15.15",
     "@mui/material": "^5.15.15",
     "@reduxjs/toolkit": "^2.2.1",
     "react": "^18.2.0",
-    "react-calendar": "^4.8.0",
+    "react-datepicker": "^6.7.0",
     "react-dom": "^18.2.0",
     "react-redux": "^9.1.0",
     "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.64",
+    "@types/react-datepicker": "^6.2.0",
     "@types/react-dom": "^18.2.21",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.1.1",

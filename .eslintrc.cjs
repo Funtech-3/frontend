@@ -19,6 +19,7 @@ module.exports = {
       "warn",
       {
         "ignoreDestructuring": true,
+        "properties": "never"
       }
     ],
 
