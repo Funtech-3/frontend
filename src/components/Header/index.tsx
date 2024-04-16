@@ -7,13 +7,15 @@ import EventIcon from '@mui/icons-material/Event';
 import { useAppSelector } from '../../hooks/redux';
 import Auth from '../Auth';
 
+import defaultAvatar from '../../assets/images/avatar.webp';
+
 const Header = () => {
   const avatar = useAppSelector(state => state.user.user.avatar);
 
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
 
   function handleAvatarUrl(url: string) {
-    return url.replace('/media/https%3A', 'https:/');
+    return url.replace(/^\/media\/https%3A/, 'https://');
   }
 
   return (
@@ -54,7 +56,7 @@ const Header = () => {
           <Link to="/profile" className={styles.link}>
             <img
               className={styles.avatar}
-              src={(avatar && handleAvatarUrl(avatar)) || ''}
+              src={(avatar && handleAvatarUrl(avatar)) || defaultAvatar}
               alt="Аватар"
             />
           </Link>

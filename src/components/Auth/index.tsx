@@ -34,7 +34,7 @@ export default function Auth() {
             postData(data)
               .unwrap()
               .then(res => {
-                localStorage.setItem('authToken', data.access_token);
+                localStorage.setItem('authToken', res.access_token);
                 setUser(res);
                 setLoggedIn(true);
               });
