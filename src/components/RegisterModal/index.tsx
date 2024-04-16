@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { Button, Modal, Box, TextField, Typography } from '@mui/material';
+import { Button, Box, TextField, Typography } from '@mui/material';
 import styles from './styles.module.scss';
 import CustomCheckBox from '../../ui-kit/CustomCheckBox/index';
 import avatar from '../../assets/images/avatar.webp';
 
 const RegisterModal = () => {
-  const [open, setOpen] = useState(false);
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
@@ -20,14 +19,6 @@ const RegisterModal = () => {
   const [numberError, setNumberError] = useState(false);
   const [jobError, setJobError] = useState(false);
   const [professionError, setProfessionError] = useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const handleSubmit = () => {
     if (!name) {
@@ -415,16 +406,7 @@ const RegisterModal = () => {
     </Box>
   );
 
-  return (
-    <div>
-      <Button variant="contained" color="primary" onClick={handleOpen}>
-        Зарегистрироваться
-      </Button>
-      <Modal open={open} onClose={handleClose}>
-        {body}
-      </Modal>
-    </div>
-  );
+  return <div>{body}</div>;
 };
 
 export default RegisterModal;

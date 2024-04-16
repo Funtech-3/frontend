@@ -258,7 +258,6 @@ export default function EventPage() {
                 }}
               >
                 <TableCell>
-                  {' '}
                   <Typography>16:00 - 17:00</Typography>
                 </TableCell>
                 <TableCell>
@@ -390,7 +389,7 @@ export default function EventPage() {
                 paddingRight: '5px',
               }}
             >
-              4 апреля 2024, 16: 00{' '}
+              4 апреля 2024, 16: 00
             </Typography>
             <Typography
               sx={{
