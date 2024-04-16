@@ -1,6 +1,5 @@
 .card {
-  display: flex;
-  flex-direction: column;
+  @include flex-container;
   width: 396px;
   height: 384px;
   border: 1px solid rgba(216, 220, 230, 1);
