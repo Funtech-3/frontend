@@ -6,10 +6,10 @@
   "scripts": {
     "dev": "vite --port 3000 --open",
     "build": "tsc && vite build",
+    "start": "vite preview --port 3000 --open",
     "lint": "eslint . --ext .tsx .",
     "lint:fix": "eslint --fix src \"src/**/*.{scss,css,json,ts,tsx}\" --report-unused-disable-directives ",
     "format": "prettier --write 'src/**/*.{ts,tsx,scss,css,json}'",
-    "preview": "vite preview",
     "prepare": "husky",
     "commit": "cz"
   },

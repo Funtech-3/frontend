@@ -4,6 +4,7 @@ import { yaApi } from './funtech/ya.api';
 import { filtersReducer } from './funtech/filters.slice';
 import { userReducer } from './funtech/user.slice';
 import { authReducer } from './funtech/auth.slice';
+import { alertReducer } from './funtech/alert.slice';
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     filters: filtersReducer,
     user: userReducer,
     auth: authReducer,
+    alert: alertReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(api.middleware, yaApi.middleware),

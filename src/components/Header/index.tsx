@@ -1,5 +1,4 @@
 import logo from '../../assets/images/logo.svg';
-
 import styles from './styles.module.scss';
 import { Link } from 'react-router-dom';
 import { InputAdornment, TextField, Typography } from '@mui/material';
@@ -24,7 +23,6 @@ const Header = () => {
           <img src={logo} alt="Лого" />
         </Link>
       </div>
-
       <TextField
         placeholder="Поиск по названию"
         size="small"

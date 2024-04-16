@@ -14,10 +14,12 @@ import {
   useDeleteLikeMutation,
   usePostLikeMutation,
 } from '../../store/funtech/funtech.api';
+import { useActions } from '../../hooks/actions';
 
 export default function Card({ event }: { event: EventType }) {
   const [postLike] = usePostLikeMutation();
   const [deleteLike] = useDeleteLikeMutation();
+  const { setAlert } = useActions();
 
   const navigate = useNavigate();
 
@@ -35,9 +37,40 @@ export default function Card({ event }: { event: EventType }) {
   function handleLike(favorited: boolean, id: string, e: React.MouseEvent) {
     e.stopPropagation();
     if (favorited) {
-      postLike(id);
+      postLike(id)
+        .unwrap()
+        .then(() => {
+          setAlert({
+            isOpen: true,
+            severity: 'success',
+            message: 'Мероприятие добавлено в избранное',
+          });
+        })
+        .catch(error => {
+          setAlert({
+            isOpen: true,
+            severity: 'error',
+            message: error.data.detail,
+          });
+        });
     }
-    deleteLike(id);
+    deleteLike(id)
+      .unwrap()
+      .then(() => {
+        setAlert({
+          isOpen: true,
+          severity: 'success',
+          message: 'Мероприятие успешно удалено из избранного',
+        });
+      })
+      .catch(error => {
+        console.log(error);
+        setAlert({
+          isOpen: true,
+          severity: 'error',
+          message: error.data.detail,
+        });
+      });
   }
 
   function defineOld(date: string) {
@@ -93,7 +126,6 @@ export default function Card({ event }: { event: EventType }) {
           </Typography>
         </div>
       </div>
-
       <div className={styles.cardBody}>
         <div className={styles.bodyTopContainer}>
           <Typography
