@@ -25,6 +25,15 @@ export const api = createApi({
         };
       },
     }),
+    postUserProfileChanges: build.mutation({
+      query: ({ data, id }) => {
+        return {
+          url: `user/${id}/`,
+          method: 'PATCH',
+          body: data,
+        };
+      },
+    }),
     getFilters: build.query({
       query: () => 'filters/',
     }),
@@ -86,4 +95,5 @@ export const {
   usePostYaUserInfoMutation,
   usePostLikeMutation,
   useDeleteLikeMutation,
+  usePostUserProfileChangesMutation,
 } = api;

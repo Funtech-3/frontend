@@ -6,17 +6,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import EventIcon from '@mui/icons-material/Event';
 import { useAppSelector } from '../../hooks/redux';
 import Auth from '../Auth';
-
-import defaultAvatar from '../../assets/images/avatar.webp';
+import AvatarImg from '../AvatarImg';
 
 const Header = () => {
-  const avatar = useAppSelector(state => state.user.user.avatar);
-
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
-
-  function handleAvatarUrl(url: string) {
-    return url.replace(/^\/media\/https%3A/, 'https://');
-  }
 
   return (
     <header className={styles.header}>
@@ -54,11 +47,7 @@ const Header = () => {
             </Typography>
           </Link>
           <Link to="/profile" className={styles.link}>
-            <img
-              className={styles.avatar}
-              src={(avatar && handleAvatarUrl(avatar)) || defaultAvatar}
-              alt="Аватар"
-            />
+            <AvatarImg />
           </Link>
         </div>
       ) : (

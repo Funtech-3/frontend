@@ -4,6 +4,7 @@ import { Typography } from '@mui/material';
 import styles from './styles.module.scss';
 import { PROFILE_TABS } from '../../utils/constants';
 import BackButton from '../../ui-kit/BackButton';
+import PersonalData from '../../components/PersonalData';
 
 export default function ProfilePage() {
   const [currentTabValue, setCurrentTabValue] = React.useState<string>(
@@ -12,6 +13,12 @@ export default function ProfilePage() {
 
   function handleTabChange(target: string) {
     setCurrentTabValue(target);
+  }
+
+  const tabData = [<PersonalData />, <PersonalData />, <PersonalData />];
+
+  function defineTabData(tabValue: string) {
+    return tabData[PROFILE_TABS.indexOf(tabValue)];
   }
 
   return (
@@ -23,6 +30,7 @@ export default function ProfilePage() {
         handleTabChange={handleTabChange}
         tabs={PROFILE_TABS}
       />
+      {defineTabData(currentTabValue)}
     </main>
   );
 }

@@ -33,6 +33,7 @@ export function Calendar() {
 
     return (
       <CustomButton
+        color="inherit"
         sx={{
           width: '200px',
           height: '53px',
