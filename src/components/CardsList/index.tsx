@@ -19,13 +19,13 @@ export default function CardsList({
             По вашему запросу ничего не найдено
           </Typography>
         ) : (
-          events &&
+          events.results &&
           events.results.map(event => (
             <Card key={event.event_id} event={event} />
           ))
         )}
       </div>
-      {events && events.next !== null && (
+      {events.results && events.next !== null && (
         <CustomButton
           onClick={handleShowMore}
           variant="outlined"

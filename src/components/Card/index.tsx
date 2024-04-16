@@ -16,7 +16,13 @@ import {
 } from '../../store/funtech/funtech.api';
 import { useActions } from '../../hooks/actions';
 
-export default function Card({ event }: { event: EventType }) {
+export default function Card({
+  event,
+  isRegistered = false,
+}: {
+  event: EventType;
+  isRegistered?: boolean;
+}) {
   const [postLike] = usePostLikeMutation();
   const [deleteLike] = useDeleteLikeMutation();
   const { setAlert } = useActions();
@@ -36,7 +42,7 @@ export default function Card({ event }: { event: EventType }) {
 
   function handleLike(favorited: boolean, id: string, e: React.MouseEvent) {
     e.stopPropagation();
-    if (favorited) {
+    if (!favorited) {
       postLike(id)
         .unwrap()
         .then(() => {
@@ -53,24 +59,25 @@ export default function Card({ event }: { event: EventType }) {
             message: error.data.detail,
           });
         });
+    } else {
+      deleteLike(id)
+        .unwrap()
+        .then(() => {
+          setAlert({
+            isOpen: true,
+            severity: 'success',
+            message: 'Мероприятие успешно удалено из избранного',
+          });
+        })
+        .catch(error => {
+          console.log(error);
+          setAlert({
+            isOpen: true,
+            severity: 'error',
+            message: error.data.detail,
+          });
+        });
     }
-    deleteLike(id)
-      .unwrap()
-      .then(() => {
-        setAlert({
-          isOpen: true,
-          severity: 'success',
-          message: 'Мероприятие успешно удалено из избранного',
-        });
-      })
-      .catch(error => {
-        console.log(error);
-        setAlert({
-          isOpen: true,
-          severity: 'error',
-          message: error.data.detail,
-        });
-      });
   }
 
   function defineOld(date: string) {
@@ -99,7 +106,7 @@ export default function Card({ event }: { event: EventType }) {
                 <CustomChip key={tag.id} label={tag.title} />
               ))}
             </div>
-            {isLoggedIn && (
+            {isLoggedIn && !isRegistered ? (
               <button
                 className={styles.likeButton}
                 onClick={(e: React.MouseEvent) =>
@@ -111,6 +118,10 @@ export default function Card({ event }: { event: EventType }) {
                 ) : (
                   <FavoriteBorderIcon fontSize="large" htmlColor="#fff" />
                 )}
+              </button>
+            ) : (
+              <button className={styles.likeButton} onClick={() => {}}>
+                {' '}
               </button>
             )}
           </div>

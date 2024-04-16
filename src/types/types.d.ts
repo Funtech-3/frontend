@@ -77,16 +77,27 @@ type FiltersStateType = {
   tags?: number[];
 };
 
+type ApiUserResponseType = {
+  access_token: string;
+  refresh_token: string;
+  user: UserType;
+};
+
 type UserType = {
-  yandex_id?: number;
-  first_name?: string;
-  last_name?: string;
-  username?: string;
-  email?: string;
-  telegram_username?: string;
-  position?: string;
-  work_place?: string;
-  avatar?: string;
+  id: number;
+  yandex_id: number;
+  first_name: string;
+  last_name: string;
+  username: string;
+  email: string;
+  phone_number: string;
+  telegram_username: string;
+  position: string;
+  work_place: string;
+  tags: string[];
+  cities: string[];
+  avatar: string;
+  full_name: string;
 };
 
 type YaIdResponseType = {

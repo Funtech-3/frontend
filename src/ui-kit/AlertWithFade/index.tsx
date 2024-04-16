@@ -22,7 +22,18 @@ export default function AlertWithFade() {
         setAlert({ isOpen: false, message: '', severity: severity })
       }
     >
-      <Alert severity={severity}>{message}</Alert>
+      <Alert
+        severity={severity}
+        sx={{
+          minWidth: 400,
+          padding: 4,
+          fontSize: 18,
+          fontWeight: 500,
+          borderRadius: 2,
+        }}
+      >
+        {message}
+      </Alert>
     </Snackbar>
   );
 }
