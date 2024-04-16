@@ -25,13 +25,13 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:latest
- 
-  trigger:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Call workflow in backend repository
-        uses: peter-evans/repository-dispatch@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          repository: Funtech-3/backend
-          event-type: run-backend-workflow
+
+  # trigger:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Call workflow in backend repository
+  #       uses: peter-evans/repository-dispatch@v1
+  #       with:
+  #         token: ${{ secrets.GITHUB_TOKEN }}
+  #         repository: Funtech-3/backend
+  #         event-type: run-backend-workflow

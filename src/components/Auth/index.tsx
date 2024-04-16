@@ -24,7 +24,7 @@ export default function Auth() {
     )
       .then(({ handler }: { handler: () => void }) => handler())
       .then((data: any) => {
-        localStorage.setItem('authToken', data.access_token);
+        localStorage.setItem('yaAuthToken', data.access_token);
       })
       .then(() => {
         refetch()
@@ -34,6 +34,7 @@ export default function Auth() {
             postData(data)
               .unwrap()
               .then(res => {
+                localStorage.setItem('token', data.access_token);
                 setUser(res);
                 setLoggedIn(true);
               });

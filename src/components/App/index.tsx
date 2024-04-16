@@ -8,17 +8,17 @@ import { usePostYaUserInfoMutation } from '../../store/funtech/funtech.api';
 import { useActions } from '../../hooks/actions';
 
 function App() {
-  const authToken = localStorage.getItem('authToken');
+  const yaAuthToken = localStorage.getItem('authToken');
   const yandexId = localStorage.getItem('yandex_id');
   const [postUser] = usePostYaUserInfoMutation();
   const { setUser } = useActions();
 
   useEffect(() => {
-    if (authToken)
+    if (yaAuthToken)
       postUser({ yandex_id: yandexId })
         .unwrap()
         .then(res => setUser(res));
-  }, [authToken]);
+  }, [yaAuthToken]);
 
   return (
     <>

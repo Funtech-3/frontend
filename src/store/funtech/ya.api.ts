@@ -6,9 +6,9 @@ export const yaApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://login.yandex.ru/',
     prepareHeaders: headers => {
-      const oauthToken = localStorage.getItem('authToken');
-      if (oauthToken) {
-        headers.set('Authorization', `OAuth ${oauthToken}`);
+      const yaAuthToken = localStorage.getItem('yaAuthToken');
+      if (yaAuthToken) {
+        headers.set('Authorization', `OAuth ${yaAuthToken}`);
       }
       return headers;
     },
