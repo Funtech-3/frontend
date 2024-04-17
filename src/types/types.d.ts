@@ -122,3 +122,17 @@ type DefaultPhoneType = {
   id: number;
   number: string;
 };
+
+type NotificationsType = {
+  yandex_id: number;
+  is_notification: boolean;
+  is_email: boolean;
+  is_telegram: boolean;
+  is_phone: boolean;
+  is_push: boolean;
+};
+
+type PatchNotificationsType = Pick<
+  NotificationsType,
+  'is_notification' | 'is_push' | 'is_email' | 'is_phone'
+>;

@@ -1,0 +1,19 @@
+.notifications {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.notificationsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  flex-grow: 1;
+}
+
+.notificationFooter {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
