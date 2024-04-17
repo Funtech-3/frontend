@@ -35,7 +35,7 @@ export default function Auth() {
               .unwrap()
               .then(res => {
                 localStorage.setItem('authToken', res.access_token);
-                setUser(res);
+                setUser(res.user);
                 setLoggedIn(true);
               });
           });
