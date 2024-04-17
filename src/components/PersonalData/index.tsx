@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Tooltip } from '@mui/material';
 import CustomTextField from '../../ui-kit/CustomTextField/CustomTextField';
 import styles from './styles.module.scss';
 import { useAppSelector } from '../../hooks/redux';
@@ -10,10 +10,13 @@ import {
   usePostUserProfileChangesMutation,
 } from '../../store/funtech/funtech.api';
 import { useActions } from '../../hooks/actions';
+import OutputIcon from '@mui/icons-material/Output';
+import { useNavigate } from 'react-router-dom';
 
 export default function PersonalData() {
   const user = useAppSelector(state => state.user.user);
   const { data } = useGetUserInfoQuery({ id: user.yandex_id! });
+  const navigate = useNavigate();
 
   const { setAlert } = useActions();
   const [postUserProfileChanges] = usePostUserProfileChangesMutation();
@@ -65,6 +68,12 @@ export default function PersonalData() {
     setFormValues(initialValues);
   }
 
+  function handleExit() {
+    localStorage.clear();
+    navigate('/');
+    window.location.reload();
+  }
+
   return (
     <Box className={styles.personalDataContainer}>
       <Box gap={4} display="flex" flexDirection="column">
@@ -74,6 +83,17 @@ export default function PersonalData() {
             <Typography fontWeight="bold">{data?.full_name}</Typography>
             <Typography color="text.secondary">{data?.email}</Typography>
           </Box>
+
+          <CustomButton
+            variant="text"
+            color="error"
+            onClick={() => handleExit()}
+            size="small"
+          >
+            <Tooltip title="Выйти из приложения">
+              <OutputIcon />
+            </Tooltip>
+          </CustomButton>
         </Box>
         <Box component="form" noValidate className={styles.personalData}>
           <CustomTextField
