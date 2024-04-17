@@ -14,7 +14,7 @@ export const api = createApi({
       return headers;
     },
   }),
-  tagTypes: ['Events'],
+  tagTypes: ['Events', 'UserInfo', 'Notifications'],
   endpoints: build => ({
     postYaUserInfo: build.mutation({
       query: data => {
@@ -25,7 +25,10 @@ export const api = createApi({
         };
       },
     }),
-    postUserProfileChanges: build.mutation({
+    postUserProfileChanges: build.mutation<
+      UserType,
+      { data: Partial<UserType>; id: number }
+    >({
       query: ({ data, id }) => {
         return {
           url: `user/${id}/`,
@@ -33,6 +36,7 @@ export const api = createApi({
           body: data,
         };
       },
+      invalidatesTags: ['UserInfo'],
     }),
     getFilters: build.query({
       query: () => 'filters/',
@@ -83,6 +87,27 @@ export const api = createApi({
       },
       invalidatesTags: ['Events'],
     }),
+    getUserInfo: build.query<UserType, { id: number }>({
+      query: ({ id }) => `user/${id}/`,
+      providesTags: ['UserInfo'],
+    }),
+    getNotificationInfo: build.query<NotificationsType, void>({
+      query: () => 'user/notifications/',
+      providesTags: ['Notifications'],
+    }),
+    patchNotificationInfo: build.mutation<
+      NotificationsType,
+      PatchNotificationsType
+    >({
+      query: data => {
+        return {
+          url: 'user/notifications/',
+          method: 'PATCH',
+          body: data,
+        };
+      },
+      invalidatesTags: ['Notifications'],
+    }),
   }),
 });
 
@@ -96,4 +121,7 @@ export const {
   usePostLikeMutation,
   useDeleteLikeMutation,
   usePostUserProfileChangesMutation,
+  useGetNotificationInfoQuery,
+  usePatchNotificationInfoMutation,
+  useGetUserInfoQuery,
 } = api;

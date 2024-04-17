@@ -5,6 +5,7 @@ import styles from './styles.module.scss';
 import { PROFILE_TABS } from '../../utils/constants';
 import BackButton from '../../ui-kit/BackButton';
 import PersonalData from '../../components/PersonalData';
+import Notifications from '../../components/Notifications';
 
 export default function ProfilePage() {
   const [currentTabValue, setCurrentTabValue] = React.useState<string>(
@@ -15,14 +16,14 @@ export default function ProfilePage() {
     setCurrentTabValue(target);
   }
 
-  const tabData = [<PersonalData />, <PersonalData />, <PersonalData />];
+  const tabData = [<PersonalData />, '', <Notifications />];
 
   function defineTabData(tabValue: string) {
     return tabData[PROFILE_TABS.indexOf(tabValue)];
   }
 
   return (
-    <main className={styles.profilePage}>
+    <div className={styles.profilePage}>
       <BackButton />
       <Typography variant="h1">Настройки</Typography>
       <CustomTabs
@@ -31,6 +32,6 @@ export default function ProfilePage() {
         tabs={PROFILE_TABS}
       />
       {defineTabData(currentTabValue)}
-    </main>
+    </div>
   );
 }
