@@ -66,7 +66,7 @@ export const api = createApi({
       },
       providesTags: ['Events'],
     }),
-    getEvent: build.query<DetailedEventType, string>({
+    getEvent: build.query<EventData, string>({
       query: slug => `events/${slug}/`,
     }),
     postLike: build.mutation({

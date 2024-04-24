@@ -70,8 +70,8 @@ export default function PersonalData() {
 
   function handleExit() {
     localStorage.clear();
-    navigate('/');
     window.location.reload();
+    navigate('/');
   }
 
   return (
