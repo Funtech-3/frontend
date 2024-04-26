@@ -75,21 +75,39 @@ export default function EventPage() {
             </div>
 
             <div className={styles.headerButtons}>
-              <CustomButton
-                sx={{ padding: '19px 40px' }}
-                onClick={() => setIsModalOpen(true)}
-              >
-                Зарегистрироваться
-              </CustomButton>
+              {data.user_registration_status === 'PENDING' ||
+              data.user_registration_status === 'REGISTERED' ? (
+                <CustomButton
+                  disabled
+                  sx={{
+                    padding: '19px 40px',
+                    '&:disabled': {
+                      color: 'text.disabled',
+                      backgroundColor: 'hsla(220, 10%, 94%, 1)',
+                    },
+                  }}
+                >
+                  Вы участвуете
+                </CustomButton>
+              ) : (
+                <>
+                  <CustomButton
+                    sx={{ padding: '19px 40px' }}
+                    onClick={() => setIsModalOpen(true)}
+                  >
+                    Зарегистрироваться
+                  </CustomButton>
 
-              <CustomButton
-                sx={{ padding: '0' }}
-                onClick={(e: React.MouseEvent) =>
-                  handleLike(data.is_in_favorites, data.slug, e)
-                }
-              >
-                {defineFavoriteIcon(data.is_in_favorites, 'black')}
-              </CustomButton>
+                  <CustomButton
+                    sx={{ padding: '0' }}
+                    onClick={(e: React.MouseEvent) =>
+                      handleLike(data.is_in_favorites, data.slug, e)
+                    }
+                  >
+                    {defineFavoriteIcon(data.is_in_favorites, 'black')}
+                  </CustomButton>
+                </>
+              )}
             </div>
           </div>
           {defineStatus(data.registration_status)}
