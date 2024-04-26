@@ -14,7 +14,7 @@ export const api = createApi({
       return headers;
     },
   }),
-  tagTypes: ['Events', 'UserInfo', 'Notifications'],
+  tagTypes: ['Events', 'UserInfo', 'Event', 'Notifications'],
   endpoints: build => ({
     postYaUserInfo: build.mutation({
       query: data => {
@@ -68,6 +68,7 @@ export const api = createApi({
     }),
     getEvent: build.query<EventData, string>({
       query: slug => `events/${slug}/`,
+      providesTags: ['Event'],
     }),
     postLike: build.mutation({
       query: slug => {
@@ -76,7 +77,7 @@ export const api = createApi({
           method: 'POST',
         };
       },
-      invalidatesTags: ['Events'],
+      invalidatesTags: ['Events', 'Event'],
     }),
     deleteLike: build.mutation({
       query: slug => {
@@ -85,7 +86,7 @@ export const api = createApi({
           method: 'DELETE',
         };
       },
-      invalidatesTags: ['Events'],
+      invalidatesTags: ['Events', 'Event'],
     }),
     getUserInfo: build.query<UserType, { id: number }>({
       query: ({ id }) => `user/${id}/`,
@@ -108,6 +109,15 @@ export const api = createApi({
       },
       invalidatesTags: ['Notifications'],
     }),
+    postRegister: build.mutation({
+      query: id => {
+        return {
+          url: `events/${id}/registration/`,
+          method: 'POST',
+        };
+      },
+      invalidatesTags: ['Events', 'Event'],
+    }),
   }),
 });
 
@@ -124,4 +134,5 @@ export const {
   useGetNotificationInfoQuery,
   usePatchNotificationInfoMutation,
   useGetUserInfoQuery,
+  usePostRegisterMutation,
 } = api;

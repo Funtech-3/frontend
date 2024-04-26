@@ -1,8 +1,6 @@
-import { useState } from 'react';
 import { CustomButton, CustomChip } from '../../ui-kit';
-import { Modal } from '@mui/material';
+import { Dialog } from '@mui/material';
 
-import RegisterModal from '../../components/RegisterModal';
 import { Typography } from '@mui/material';
 import { useParams } from 'react-router-dom';
 
@@ -16,6 +14,9 @@ import defineFavoriteIcon from '../../utils/defineFavoriteIcon';
 import { useHandleLike } from '../../hooks/useHandleLike';
 import defineStatus from '../../utils/defineStatus';
 import ProgrammList from '../../components/ProgrammList';
+import EventRegister from '../../components/EventRegister';
+import { useAppSelector } from '../../hooks/redux';
+import { useActions } from '../../hooks/actions';
 
 export default function EventPage() {
   const { id } = useParams();
@@ -24,10 +25,8 @@ export default function EventPage() {
   const { data } = useGetEventQuery(id as string);
   console.log(data);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
+  const { isModalOpen } = useAppSelector(state => state.modal);
+  const { setIsModalOpen } = useActions();
 
   if (!data) return null;
 
@@ -76,7 +75,10 @@ export default function EventPage() {
             </div>
 
             <div className={styles.headerButtons}>
-              <CustomButton sx={{ padding: '19px 40px' }} onClick={toggleModal}>
+              <CustomButton
+                sx={{ padding: '19px 40px' }}
+                onClick={() => setIsModalOpen(true)}
+              >
                 Зарегистрироваться
               </CustomButton>
 
@@ -179,7 +181,7 @@ export default function EventPage() {
               size="medium"
               variant="contained"
               color="secondary"
-              onClick={toggleModal}
+              onClick={() => setIsModalOpen(true)}
               sx={{
                 width: '182px',
                 height: '62px',
@@ -191,9 +193,19 @@ export default function EventPage() {
         </div>
       </footer>
 
-      <Modal open={isModalOpen} onClose={toggleModal}>
-        <RegisterModal />
-      </Modal>
+      <Dialog
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        scroll="paper"
+        maxWidth={false}
+        sx={{
+          '& .MuiDialog-paper': {
+            borderRadius: '40px',
+          },
+        }}
+      >
+        <EventRegister event={data} />
+      </Dialog>
     </>
   );
 }

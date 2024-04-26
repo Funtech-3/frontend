@@ -1,0 +1,25 @@
+.eventRegisterContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 32px 64px;
+  width: 840px;
+}
+
+.personalDataHeader {
+  display: flex;
+  gap: 6px;
+}
+
+.personalData {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}

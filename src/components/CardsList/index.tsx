@@ -30,6 +30,7 @@ export default function CardsList({
           onClick={handleShowMore}
           variant="outlined"
           color="primary"
+          sx={{ alignSelf: 'center' }}
         >
           + Показать еще
         </CustomButton>

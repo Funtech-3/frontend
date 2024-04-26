@@ -1,56 +1,37 @@
-import { Box, Typography, Tooltip } from '@mui/material';
-import CustomTextField from '../../ui-kit/CustomTextField/CustomTextField';
+import { Box, Tooltip } from '@mui/material';
+
 import styles from './styles.module.scss';
 import { useAppSelector } from '../../hooks/redux';
 import AvatarImg from '../AvatarImg';
-import { useEffect, useState } from 'react';
+
 import { CustomButton } from '../../ui-kit';
-import {
-  useGetUserInfoQuery,
-  usePostUserProfileChangesMutation,
-} from '../../store/funtech/funtech.api';
+import { usePostUserProfileChangesMutation } from '../../store/funtech/funtech.api';
 import { useActions } from '../../hooks/actions';
 import OutputIcon from '@mui/icons-material/Output';
 import { useNavigate } from 'react-router-dom';
+import ProfileFormInfo from '../ProfileFormInfo';
+import UserCard from '../UserCard';
 
 export default function PersonalData() {
-  const user = useAppSelector(state => state.user.user);
-  const { data } = useGetUserInfoQuery({ id: user.yandex_id! });
   const navigate = useNavigate();
-
-  const { setAlert } = useActions();
+  const { user, updatedUser } = useAppSelector(state => state.user);
+  const { setUser, setAlert, setUpdatedUser } = useActions();
   const [postUserProfileChanges] = usePostUserProfileChangesMutation();
 
-  const initialValues = {
-    name: data?.first_name || '',
-    familyName: data?.last_name || '',
-    email: data?.email || '',
-    tel: data?.phone_number || '',
-    telegram: data?.telegram_username || '',
-    work: data?.work_place || '',
-    position: data?.position || '',
-  };
-
-  const [formValues, setFormValues] = useState(initialValues);
-
-  useEffect(() => {
-    setFormValues(initialValues);
-  }, [data]);
-
   function handleSubmit() {
-    console.log(formValues);
+    setUser(updatedUser);
 
-    const data = {
-      first_name: formValues.name,
-      last_name: formValues.familyName,
-      email: formValues.email,
-      phone_number: formValues.tel,
-      telegram_username: formValues.telegram,
-      work_place: formValues.work,
-      position: formValues.position,
+    const formData = {
+      first_name: updatedUser.first_name,
+      last_name: updatedUser.last_name,
+      email: updatedUser.email,
+      phone_number: updatedUser.phone_number,
+      telegram_username: updatedUser.telegram_username,
+      work_place: updatedUser.work_place,
+      position: updatedUser.position,
     };
 
-    postUserProfileChanges({ data, id: user.yandex_id! })
+    postUserProfileChanges({ data: formData, id: user.yandex_id! })
       .unwrap()
       .then(() =>
         setAlert({
@@ -65,7 +46,7 @@ export default function PersonalData() {
   }
 
   function revertChanges() {
-    setFormValues(initialValues);
+    setUpdatedUser(user);
   }
 
   function handleExit() {
@@ -79,11 +60,7 @@ export default function PersonalData() {
       <Box gap={4} display="flex" flexDirection="column">
         <Box className={styles.personalDataHeader}>
           <AvatarImg />
-          <Box className={styles.personalDataHeaderInfo}>
-            <Typography fontWeight="bold">{data?.full_name}</Typography>
-            <Typography color="text.secondary">{data?.email}</Typography>
-          </Box>
-
+          <UserCard />
           <CustomButton
             variant="text"
             color="error"
@@ -95,83 +72,7 @@ export default function PersonalData() {
             </Tooltip>
           </CustomButton>
         </Box>
-        <Box component="form" noValidate className={styles.personalData}>
-          <CustomTextField
-            id="name"
-            label="Имя"
-            fullWidth
-            value={formValues.name}
-            autoComplete="given-name"
-            variant="standard"
-            onChange={e =>
-              setFormValues({ ...formValues, name: e.target.value })
-            }
-          />
-          <CustomTextField
-            id="family-name"
-            label="Фамилия"
-            fullWidth
-            autoComplete="family-name"
-            variant="standard"
-            value={formValues.familyName}
-            onChange={e =>
-              setFormValues({ ...formValues, familyName: e.target.value })
-            }
-          />
-          <CustomTextField
-            id="email"
-            label="Email"
-            fullWidth
-            autoComplete="email"
-            variant="standard"
-            value={formValues.email}
-            onChange={e =>
-              setFormValues({ ...formValues, email: e.target.value })
-            }
-          />
-          <CustomTextField
-            id="tel"
-            label="Телефон"
-            fullWidth
-            autoComplete="tel"
-            variant="standard"
-            value={formValues.tel}
-            onChange={({ target: { value } }) =>
-              setFormValues(formValues => ({ ...formValues, tel: value }))
-            }
-          />
-          <CustomTextField
-            id="telegram"
-            label="Ник в Telegram"
-            fullWidth
-            variant="standard"
-            value={formValues.telegram}
-            onChange={({ target: { value } }) =>
-              setFormValues(formValues => ({ ...formValues, telegram: value }))
-            }
-          />
-          <CustomTextField
-            id="work"
-            label="Место работы"
-            fullWidth
-            variant="standard"
-            autoComplete="organization-title"
-            value={formValues.work}
-            onChange={({ target: { value } }) =>
-              setFormValues(formValues => ({ ...formValues, work: value }))
-            }
-          />
-          <CustomTextField
-            id="position"
-            label="Должность"
-            fullWidth
-            variant="standard"
-            value={formValues.position}
-            onChange={({ target: { value } }) =>
-              setFormValues(formValues => ({ ...formValues, position: value }))
-            }
-          />
-        </Box>
+        <ProfileFormInfo />
       </Box>
       <Box className={styles.personalDataFooter}>
         <CustomButton

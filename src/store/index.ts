@@ -5,6 +5,7 @@ import { filtersReducer } from './funtech/filters.slice';
 import { userReducer } from './funtech/user.slice';
 import { authReducer } from './funtech/auth.slice';
 import { alertReducer } from './funtech/alert.slice';
+import { modalReducer } from './funtech/modal.slice';
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     user: userReducer,
     auth: authReducer,
     alert: alertReducer,
+    modal: modalReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(api.middleware, yaApi.middleware),
