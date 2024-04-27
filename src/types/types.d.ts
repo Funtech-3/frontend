@@ -144,3 +144,8 @@ type Speaker = {
   position: string;
   image: string;
 };
+
+type UserInterests = {
+  tags: number[];
+  cities: number[];
+};

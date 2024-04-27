@@ -62,6 +62,16 @@ const theme = createTheme({
         },
       },
     },
+    MuiButton: {
+      styleOverrides: {
+        sizeLarge: {
+          height: 48,
+        },
+        root: {
+          borderColor: 'hsla(223, 22%, 87%, 1)',
+        },
+      },
+    },
   },
 });
 

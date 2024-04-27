@@ -9,6 +9,7 @@ import CustomMenuItem from './CustomMenuItem';
 import CustomChip from './CustomChip';
 import CustomTabs from './CustomTabs';
 import BackButton from './BackButton';
+import TagButton from './TagButton';
 
 export {
   CustomButton,
@@ -22,4 +23,5 @@ export {
   CustomChip,
   CustomTabs,
   BackButton,
+  TagButton,
 };

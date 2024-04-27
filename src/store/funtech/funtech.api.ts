@@ -14,7 +14,7 @@ export const api = createApi({
       return headers;
     },
   }),
-  tagTypes: ['Events', 'UserInfo', 'Event', 'Notifications'],
+  tagTypes: ['Events', 'UserInfo', 'Event', 'Notifications', 'Interests'],
   endpoints: build => ({
     postYaUserInfo: build.mutation({
       query: data => {
@@ -118,6 +118,20 @@ export const api = createApi({
       },
       invalidatesTags: ['Events', 'Event'],
     }),
+    getUserInterests: build.query<UserInterests, void>({
+      query: () => 'user/interests/',
+      providesTags: ['Interests'],
+    }),
+    putUserInterests: build.mutation<UserInterests, UserInterests>({
+      query: data => {
+        return {
+          url: 'user/interests/',
+          method: 'PUT',
+          body: data,
+        };
+      },
+      invalidatesTags: ['Interests'],
+    }),
   }),
 });
 
@@ -135,4 +149,6 @@ export const {
   usePatchNotificationInfoMutation,
   useGetUserInfoQuery,
   usePostRegisterMutation,
+  useGetUserInterestsQuery,
+  usePutUserInterestsMutation,
 } = api;

@@ -4,10 +4,11 @@ import {
   useGetNotificationInfoQuery,
   usePatchNotificationInfoMutation,
 } from '../../store/funtech/funtech.api';
-import { CustomButton } from '../../ui-kit';
+
 import styles from './styles.module.scss';
 import { useState, useEffect } from 'react';
 import { useActions } from '../../hooks/actions';
+import FormButtons from '../FormButtons';
 
 export default function Notifications() {
   const { data } = useGetNotificationInfoQuery();
@@ -111,24 +112,7 @@ export default function Notifications() {
           }}
         />
       </Box>
-      <Box className={styles.notificationFooter}>
-        <CustomButton
-          color="primary"
-          variant="outlined"
-          onClick={() => {
-            revertChanges();
-          }}
-        >
-          Отменить
-        </CustomButton>
-        <CustomButton
-          onClick={() => {
-            handleSubmit();
-          }}
-        >
-          Сохранить изменения
-        </CustomButton>
-      </Box>
+      <FormButtons revertChanges={revertChanges} handleSubmit={handleSubmit} />
     </Box>
   );
 }
