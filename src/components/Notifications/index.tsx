@@ -59,8 +59,12 @@ export default function Notifications() {
           message: 'Данные успешно обновлены',
         }),
       )
-      .catch(err =>
-        setAlert({ isOpen: true, severity: 'error', message: err.data.detail }),
+      .catch(error =>
+        setAlert({
+          isOpen: true,
+          severity: 'error',
+          message: error.data.detail || 'Не удалось обновить данные',
+        }),
       );
   }
 

@@ -41,8 +41,12 @@ export default function PersonalTagList() {
           message: 'Данные успешно обновлены',
         }),
       )
-      .catch(err =>
-        setAlert({ isOpen: true, severity: 'error', message: err }),
+      .catch(error =>
+        setAlert({
+          isOpen: true,
+          severity: 'error',
+          message: error.data.detail || 'Не удалось обновить данные',
+        }),
       );
   }, [interests, putInterests, setAlert]);
 

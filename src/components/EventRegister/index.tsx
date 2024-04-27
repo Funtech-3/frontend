@@ -11,7 +11,6 @@ export default function EventRegister({ event }: { event: EventData }) {
   const { setIsModalOpen, setAlert } = useActions();
   const [register] = usePostRegisterMutation();
 
-  console.log(event);
   function handleSubmit() {
     register(event.slug)
       .unwrap()
@@ -22,8 +21,12 @@ export default function EventRegister({ event }: { event: EventData }) {
           message: 'Вы успешно зарегестрировались',
         }),
       )
-      .catch(err =>
-        setAlert({ isOpen: true, severity: 'error', message: new Error(err) }),
+      .catch(error =>
+        setAlert({
+          isOpen: true,
+          severity: 'error',
+          message: error.data.detail || 'Не удалось зарегистрироваться',
+        }),
       )
       .finally(() => setIsModalOpen(false));
   }

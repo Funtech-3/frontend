@@ -41,7 +41,11 @@ export default function PersonalData() {
         }),
       )
       .catch(err =>
-        setAlert({ isOpen: true, severity: 'error', message: err.data.detail }),
+        setAlert({
+          isOpen: true,
+          severity: 'error',
+          message: err.data.detail || 'Не удалось обновить данные',
+        }),
       );
   }
 

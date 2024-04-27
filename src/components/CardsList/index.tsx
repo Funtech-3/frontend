@@ -7,9 +7,11 @@ import Card from '../Card';
 export default function CardsList({
   events,
   handleShowMore,
+  isRegistered = false,
 }: {
   events: ApiResponseType<EventType>;
   handleShowMore: () => void;
+  isRegistered?: boolean;
 }) {
   return (
     <section className={styles.cards}>
@@ -21,7 +23,11 @@ export default function CardsList({
         ) : (
           events.results &&
           events.results.map(event => (
-            <Card key={event.event_id} event={event} />
+            <Card
+              key={event.event_id}
+              event={event}
+              isRegistered={isRegistered}
+            />
           ))
         )}
       </div>

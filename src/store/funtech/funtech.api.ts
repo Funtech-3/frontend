@@ -80,7 +80,7 @@ export const api = createApi({
       invalidatesTags: ['Events', 'Event'],
     }),
     deleteLike: build.mutation({
-      query: slug => {
+      query: (slug: string) => {
         return {
           url: `events/${slug}/favorite/`,
           method: 'DELETE',
@@ -118,6 +118,15 @@ export const api = createApi({
       },
       invalidatesTags: ['Events', 'Event'],
     }),
+    deleteRegister: build.mutation({
+      query: id => {
+        return {
+          url: `events/${id}/registration/`,
+          method: 'DELETE',
+        };
+      },
+      invalidatesTags: ['Events', 'Event'],
+    }),
     getUserInterests: build.query<UserInterests, void>({
       query: () => 'user/interests/',
       providesTags: ['Interests'],
@@ -151,4 +160,5 @@ export const {
   usePostRegisterMutation,
   useGetUserInterestsQuery,
   usePutUserInterestsMutation,
+  useDeleteRegisterMutation,
 } = api;

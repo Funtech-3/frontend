@@ -1,5 +1,6 @@
 import { Typography } from '@mui/material';
 import PlaceIcon from '@mui/icons-material/Place';
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 
 import styles from './styles.module.scss';
 import { CustomChip } from '../../ui-kit';
@@ -11,6 +12,8 @@ import { useAppSelector } from '../../hooks/redux';
 import defineFavoriteIcon from '../../utils/defineFavoriteIcon';
 import { useHandleLike } from '../../hooks/useHandleLike';
 import defineStatus from '../../utils/defineStatus';
+import { useActions } from '../../hooks/actions';
+import { useDeleteRegisterMutation } from '../../store/funtech/funtech.api';
 
 export default function Card({
   event,
@@ -20,6 +23,8 @@ export default function Card({
   isRegistered?: boolean;
 }) {
   const { handleLike } = useHandleLike();
+  const { setAlert } = useActions();
+  const [deleteRegister] = useDeleteRegisterMutation();
 
   const navigate = useNavigate();
 
@@ -29,6 +34,26 @@ export default function Card({
     const dateNow = new Date();
     const dateEvent = new Date(date);
     return dateNow < dateEvent;
+  }
+
+  function removeRegistration(e: React.MouseEvent, id: string) {
+    e.stopPropagation();
+    deleteRegister(id)
+      .unwrap()
+      .then(() => {
+        setAlert({
+          isOpen: true,
+          severity: 'success',
+          message: 'Мероприятие отменено',
+        });
+      })
+      .catch(error => {
+        setAlert({
+          isOpen: true,
+          severity: 'error',
+          message: error.data.detail || 'Не удалось отменить мероприятие ',
+        });
+      });
   }
 
   return (
@@ -61,7 +86,15 @@ export default function Card({
                 {defineFavoriteIcon(!!event.is_in_favorites)}
               </button>
             ) : (
-              <button className={styles.likeButton} onClick={() => {}}></button>
+              <button
+                className={styles.likeButton}
+                onClick={e => removeRegistration(e, event.slug)}
+              >
+                <CancelOutlinedIcon
+                  htmlColor={theme.palette.primary.contrastText}
+                  fontSize="large"
+                />
+              </button>
             )}
           </div>
           <Typography
