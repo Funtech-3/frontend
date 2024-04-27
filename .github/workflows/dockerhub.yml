@@ -2,8 +2,8 @@ name: docker front
 
 on:
   push:
-    branches:
-      - 'develop'
+    branches: [ 'develop', 'main' ]
+  workflow_dispatch:
 
 jobs:
   build_and_push_to_docker_hub:
@@ -26,12 +26,13 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:latest
 
-  # trigger:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Call workflow in backend repository
-  #       uses: peter-evans/repository-dispatch@v1
-  #       with:
-  #         token: ${{ secrets.GITHUB_TOKEN }}
-  #         repository: Funtech-3/backend
-  #         event-type: run-backend-workflow
+  trigger_deploy_on_backend_repo:
+    if:
+      contains('
+        refs/heads/develop
+        refs/heads/main
+      ', github.ref)
+    uses: Pet-projects-CodePET/Backend/.github/workflows/deploy.yml@develop
+    needs:
+      - build_and_push_to_docker_hub
+    secrets: inherit
