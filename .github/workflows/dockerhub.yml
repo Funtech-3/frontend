@@ -29,10 +29,10 @@ jobs:
   trigger_deploy_on_backend_repo:
     if:
       contains('
-        refs/heads/develop
+        refs/heads/dev
         refs/heads/main
       ', github.ref)
-    uses: Funtech-3/backend/.github/workflows/deploy.yml@develop
+    uses: Funtech-3/backend/.github/workflows/deploy.yml@dev
     needs:
       - build_and_push_to_docker_hub
     secrets: inherit
