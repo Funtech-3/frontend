@@ -7,59 +7,10 @@
   justify-content: space-between;
 }
 
-.personalData {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  gap: 16px;
-  width: 700px;
-  padding-top: 14px;
-  flex-grow: 1;
-
-  > * {
-    grid-column: span 1;
-    grid-row: span 1;
-  }
-
-  > :nth-child(1) {
-    grid-column: 1;
-    grid-row: 1;
-  }
-  > :nth-child(2) {
-    grid-column: 2;
-    grid-row: 1;
-  }
-  > :nth-child(3) {
-    grid-column: 1;
-    grid-row: 2;
-  }
-  > :nth-child(4) {
-    grid-column: 2;
-    grid-row: 2;
-  }
-  > :nth-child(5) {
-    grid-column: 3;
-    grid-row: 2;
-  }
-  > :nth-child(6) {
-    grid-column: 1 / 3;
-    grid-row: 3;
-  }
-  > :nth-child(7) {
-    grid-column: 3;
-    grid-row: 3;
-  }
-}
-
 .personalDataHeader {
   display: flex;
   flex-direction: row;
   gap: 16px;
-}
-
-.personalDataHeaderInfo {
-  display: flex;
-  flex-direction: column;
 }
 
 .personalDataFooter {

@@ -6,7 +6,7 @@ export default function CustomChip(props: ChipProps) {
       {...props}
       sx={{
         color: 'primary.contrastText',
-        backgroundColor: 'text.secondary',
+        backgroundColor: 'hsla(0, 0%, 13%, 0.55)',
         ...props.sx,
       }}
     />

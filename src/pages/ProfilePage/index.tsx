@@ -6,6 +6,7 @@ import { PROFILE_TABS } from '../../utils/constants';
 import BackButton from '../../ui-kit/BackButton';
 import PersonalData from '../../components/PersonalData';
 import Notifications from '../../components/Notifications';
+import PersonalTagList from '../../components/PersonalTagList';
 
 export default function ProfilePage() {
   const [currentTabValue, setCurrentTabValue] = React.useState<string>(
@@ -16,7 +17,7 @@ export default function ProfilePage() {
     setCurrentTabValue(target);
   }
 
-  const tabData = [<PersonalData />, '', <Notifications />];
+  const tabData = [<PersonalData />, <PersonalTagList />, <Notifications />];
 
   function defineTabData(tabValue: string) {
     return tabData[PROFILE_TABS.indexOf(tabValue)];

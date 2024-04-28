@@ -14,7 +14,7 @@ export const api = createApi({
       return headers;
     },
   }),
-  tagTypes: ['Events', 'UserInfo', 'Notifications'],
+  tagTypes: ['Events', 'UserInfo', 'Event', 'Notifications', 'Interests'],
   endpoints: build => ({
     postYaUserInfo: build.mutation({
       query: data => {
@@ -66,8 +66,9 @@ export const api = createApi({
       },
       providesTags: ['Events'],
     }),
-    getEvent: build.query<DetailedEventType, string>({
+    getEvent: build.query<EventData, string>({
       query: slug => `events/${slug}/`,
+      providesTags: ['Event'],
     }),
     postLike: build.mutation({
       query: slug => {
@@ -76,16 +77,16 @@ export const api = createApi({
           method: 'POST',
         };
       },
-      invalidatesTags: ['Events'],
+      invalidatesTags: ['Events', 'Event'],
     }),
     deleteLike: build.mutation({
-      query: slug => {
+      query: (slug: string) => {
         return {
           url: `events/${slug}/favorite/`,
           method: 'DELETE',
         };
       },
-      invalidatesTags: ['Events'],
+      invalidatesTags: ['Events', 'Event'],
     }),
     getUserInfo: build.query<UserType, { id: number }>({
       query: ({ id }) => `user/${id}/`,
@@ -108,6 +109,38 @@ export const api = createApi({
       },
       invalidatesTags: ['Notifications'],
     }),
+    postRegister: build.mutation({
+      query: id => {
+        return {
+          url: `events/${id}/registration/`,
+          method: 'POST',
+        };
+      },
+      invalidatesTags: ['Events', 'Event'],
+    }),
+    deleteRegister: build.mutation({
+      query: id => {
+        return {
+          url: `events/${id}/registration/`,
+          method: 'DELETE',
+        };
+      },
+      invalidatesTags: ['Events', 'Event'],
+    }),
+    getUserInterests: build.query<UserInterests, void>({
+      query: () => 'user/interests/',
+      providesTags: ['Interests'],
+    }),
+    putUserInterests: build.mutation<UserInterests, UserInterests>({
+      query: data => {
+        return {
+          url: 'user/interests/',
+          method: 'PUT',
+          body: data,
+        };
+      },
+      invalidatesTags: ['Interests'],
+    }),
   }),
 });
 
@@ -124,4 +157,8 @@ export const {
   useGetNotificationInfoQuery,
   usePatchNotificationInfoMutation,
   useGetUserInfoQuery,
+  usePostRegisterMutation,
+  useGetUserInterestsQuery,
+  usePutUserInterestsMutation,
+  useDeleteRegisterMutation,
 } = api;

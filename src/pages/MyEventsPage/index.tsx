@@ -40,7 +40,13 @@ export default function MyEventsPage() {
         handleTabChange={handleTabChange}
         tabs={MY_EVENTS_TABS}
       />
-      {myEvents && <CardsList events={myEvents} handleShowMore={() => {}} />}
+      {myEvents && (
+        <CardsList
+          events={myEvents}
+          handleShowMore={() => {}}
+          isRegistered={currentTabValue === 'Предстоящие'}
+        />
+      )}
     </main>
   );
 }

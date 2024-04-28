@@ -10,6 +10,7 @@ const CustomButton: React.FC<ButtonProps> = props => {
         fontWeight: '500',
         fontSize: '16px',
         lineHeight: '20px',
+
         ...props.sx,
       }}
     />
@@ -19,7 +20,7 @@ const CustomButton: React.FC<ButtonProps> = props => {
 export default CustomButton;
 
 CustomButton.defaultProps = {
-  size: 'large',
   variant: 'contained',
   color: 'secondary',
+  size: 'large',
 };
