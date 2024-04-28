@@ -85,7 +85,7 @@ export default function Card({
               >
                 {defineFavoriteIcon(!!event.is_in_favorites)}
               </button>
-            ) : (
+            ) : isLoggedIn && isRegistered ? (
               <button
                 className={styles.likeButton}
                 onClick={e => removeRegistration(e, event.slug)}
@@ -95,7 +95,7 @@ export default function Card({
                   fontSize="large"
                 />
               </button>
-            )}
+            ) : null}
           </div>
           <Typography
             className={styles.title}
